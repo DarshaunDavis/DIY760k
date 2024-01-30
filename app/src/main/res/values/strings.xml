@@ -5,4 +5,8 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="not_registered_register">Not registered yet? Register</string>
+    <string name="first_name">First Name</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login">Already Registered? Login</string>
+    <string name="confirm_password">Confirm Password</string>
 </resources>
