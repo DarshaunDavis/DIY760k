@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "840819015993",
+    "project_id": "diy-760-43a15",
+    "storage_bucket": "diy-760-43a15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840819015993:android:d8b414cfd1162874d3a8e8",
+        "android_client_info": {
+          "package_name": "com.lislal.diy760"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCwl0hP6ZhHJ-IAQK16swSeNYhY1a2q-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
