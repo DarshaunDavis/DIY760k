@@ -3,56 +3,74 @@ package com.lislal.diy760
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.FrameLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.MaterialToolbar
 
 class LeftFragment : Fragment() {
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: LayoutsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_left, container, false)
+        return inflater.inflate(R.layout.fragment_left, container, false)
+    }
 
-        val button1 = view.findViewById<Button>(R.id.button1)
-        val button2 = view.findViewById<Button>(R.id.button2)
-        val button3 = view.findViewById<Button>(R.id.button3)
-        val button4 = view.findViewById<Button>(R.id.button4)
-        val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        button1.setOnClickListener {
-            button1.isEnabled = false
-            button2.visibility = View.VISIBLE
-            button3.visibility = View.VISIBLE
-            button2.isEnabled = true
+        // Setup the toolbar
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+
+        // Indicate that this fragment would like to influence the set of actions in the action bar.
+        setHasOptionsMenu(true)
+
+        // Setup RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        // Initialize the adapter with data from LayoutDataProvider and set this adapter to the RecyclerView
+        adapter = LayoutsAdapter(LayoutDataProvider.layoutsList.toMutableList()) { layoutModel ->
+            // Placeholder for handling layout item clicks
+            // Here, you can navigate to another fragment or activity that displays the selected layout
         }
+        recyclerView.adapter = adapter
+    }
 
-        button2.setOnClickListener {
-            // Load sagestream_letter_layout into the container
-            customContainer.removeAllViews() // Clear any previous views
-            val inflater = LayoutInflater.from(requireContext())
-            inflater.inflate(R.layout.sagestream_letter_layout, customContainer, true)
-        }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        inflater.inflate(R.menu.menu_search, menu)
 
-        button3.setOnClickListener {
-            button3.isEnabled = false
-            button2.visibility = View.GONE
-            button3.visibility = View.GONE
-            button4.visibility = View.VISIBLE
-            button4.isEnabled = true
-        }
+        // Setup the SearchView
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
 
-        button4.setOnClickListener {
-            // Load custom_layout into the container
-            customContainer.removeAllViews() // Clear any previous views
-            val inflater = LayoutInflater.from(requireContext())
-            inflater.inflate(R.layout.custom_layout, customContainer, true)
-        }
+        // Configure the search info and add any event listeners...
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // This is where you could handle query submission, e.g., perform search
+                return false
+            }
 
-        return view
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Filter the adapter's dataset based on the user's search query
+                adapter.filter(newText ?: "")
+                return true
+            }
+        })
+        super.onCreateOptionsMenu(menu, inflater)
     }
 }
