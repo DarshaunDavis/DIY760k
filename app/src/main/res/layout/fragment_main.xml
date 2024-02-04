@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="main fragment" />
+        android:fillViewport="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:text="At DIY 760, we're committed to making your credit repair journey as smooth and effective as possible. Whether you're just starting out or you're a seasoned pro, we've got the tools and resources to support your path to financial freedom.\n\nYour journey to better credit starts here.\nNavigate through our app easily with a simple swipe."
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <ImageView
+                android:id="@+id/arrow_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_circle_left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:text="\nSwipe left to access the Guided Repair Journey. Perfect for those who are new to credit repair or prefer a step-by-step guide. This tab will take you through the entire process. We're here to guide you through each step, ensuring you have the support you need."
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+            <ImageView
+                android:id="@+id/arrow_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_circle_right"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"
+                android:text="\nSwipe right to find the Self-Repair letter builders. This tab is designed for those who know exactly what they need. If you're looking for specific dispute letters, this scrollable list of resources and a search option provide quick access to all the tools you need."
+                android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
