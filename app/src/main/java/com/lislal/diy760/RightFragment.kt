@@ -1,23 +1,34 @@
 package com.lislal.diy760
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
 class RightFragment : Fragment() {
-    // Assuming existing code...
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    data class ButtonAction(
+        val layoutResId: Int,
+        val nextButtonIndex: Int? // Use null for no subsequent button
+    )
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(R.layout.fragment_right, container, false)
+
+        val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
 
         // Dynamically find button IDs and initialize buttons
         val buttons = (1..17).map { id ->
-            view.findViewById<Button>(resources.getIdentifier("button$id", "id", context?.packageName)) }
+            view.findViewById<Button>(resources.getIdentifier("button$id", "id", context?.packageName))
+        }
         val textViewExplanation = listOf(
             view.findViewById<TextView>(R.id.textViewExplanation1),
             view.findViewById<TextView>(R.id.textViewExplanation2),
@@ -27,21 +38,61 @@ class RightFragment : Fragment() {
         val containers = listOf(
             view.findViewById<LinearLayout>(R.id.buttonAndTextContainer),
             view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer)
-        )
+            )
 
-        // Set up a generic click listener for buttons that follow a similar pattern
-        buttons.forEachIndexed { index, button ->
-            button.setOnClickListener {
-                // Generic handling based on button index
-                handleClick(index, buttons, textViewExplanation, containers)
-            }
-        }
+            val buttonActions = mapOf(
+                1 to ButtonAction(R.layout.experian_step_1_letter_layout, 2),
+                2 to ButtonAction(R.layout.equifax_step_1_letter_layout, 3),
+                3 to ButtonAction(R.layout.transunion_step_1_letter_layout, 4),
+                4 to ButtonAction(R.layout.sagestream_step_1_letter_layout, 5),
+                5 to ButtonAction(R.layout.corelogic_step_1_letter_layout, 6),
+                6 to ButtonAction(R.layout.innovis_step_1_letter_layout, 7),
+                7 to ButtonAction(R.layout.lexisnexis_step_1_letter_layout, 8),
+                9 to ButtonAction(R.layout.experian_step_2_letter_layout, 10),
+                10 to ButtonAction(R.layout.equifax_step_2_letter_layout, 11),
+                11 to ButtonAction(R.layout.transunion_step_2_letter_layout, 12),
+                12 to ButtonAction(R.layout.sagestream_step_2_letter_layout, 13),
+                13 to ButtonAction(R.layout.corelogic_step_2_letter_layout, 14),
+                14 to ButtonAction(R.layout.innovis_step_2_letter_layout, 15),
+                15 to ButtonAction(R.layout.lexisnexis_step_2_letter_layout, 16)
+            )
 
-        // Special handling for button1 and button8 to adjust visibility and text
+        // Setup button actions using the new approach
+        setupButtonActions(buttonActions, buttons, customContainer)
+
+        // Handle special button actions
         setupSpecialButtons(buttons, textViewExplanation, containers)
 
         return view
     }
+
+    private fun setupButtonActions(
+        buttonActions: Map<Int, ButtonAction>,
+        buttons: List<Button>,
+        customContainer: FrameLayout
+    ) {
+        buttonActions.forEach { (index, action) ->
+            buttons[index].setOnClickListener {
+                // Ensure container is visible before attempting to inflate and add content
+                customContainer.visibility = View.VISIBLE
+
+                customContainer.removeAllViews()
+                val customView = LayoutInflater.from(requireContext()).inflate(action.layoutResId, customContainer, false)
+                customContainer.addView(customView)
+
+                val generateButton = customView.findViewById<Button>(R.id.generateButton)
+                generateButton?.setOnClickListener {
+                    customContainer.visibility = View.GONE
+                    action.nextButtonIndex?.let { nextIndex ->
+                        buttons.getOrNull(nextIndex)?.isEnabled = true
+                    }
+                    buttons[index].isEnabled = false
+                }
+            }
+        }
+    }
+
+
 
     private fun setupSpecialButtons(buttons: List<Button>, textViewExplanation: List<TextView>, containers: List<LinearLayout>) {
         buttons[0].setOnClickListener {
@@ -89,11 +140,4 @@ class RightFragment : Fragment() {
             buttons[8].text = "Step 2 - Update Personal Information" // Assuming buttons[8] is button9
         }
     }
-
-    private fun handleClick(index: Int, buttons: List<Button>, textViewExplanation: List<TextView>, containers: List<LinearLayout>) {
-        buttons[index].isEnabled = false
-        if (index + 1 < buttons.size) buttons[index + 1].isEnabled = true
-        // Additional logic based on index if needed for special cases not covered in setupSpecialButtons
-    }
 }
-
