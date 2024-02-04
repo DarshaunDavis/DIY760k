@@ -21,7 +21,12 @@
             android:textStyle="bold"
             android:text="Layout Title" />
 
-        <!-- Add more TextViews or other components here as needed -->
+        <!-- TextView for the description, initially hidden -->
+        <TextView
+            android:id="@+id/layoutDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" /> <!-- Initially set to gone -->
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

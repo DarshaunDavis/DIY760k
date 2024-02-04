@@ -18,6 +18,12 @@
                 ),
                 LayoutModel
                     (
+                    title = "CoreLogic Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from CoreLogic.",
+                    resourceId = R.layout.corelogic_complete_letter_layout,
+                ),
+                LayoutModel
+                    (
                     title = "Equifax Step 1 Letter",
                     description = "Request a copy of your credit report and/or freeze your credit report from Equifax.",
                     resourceId = R.layout.equifax_step_1_letter_layout,
@@ -27,6 +33,12 @@
                     title = "Equifax Step 2 Letter",
                     description = "Dispute and remove inaccurate names, addresses, phone numbers and employers from your credit report from Equifax.",
                     resourceId = R.layout.equifax_step_2_letter_layout,
+                ),
+                LayoutModel
+                    (
+                    title = "Equifax Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from Equifax.",
+                    resourceId = R.layout.equifax_complete_letter_layout,
                 ),
                 LayoutModel
                     (
@@ -42,6 +54,12 @@
                 ),
                 LayoutModel
                     (
+                    title = "Experian Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from Experian.",
+                    resourceId = R.layout.experian_complete_letter_layout,
+                ),
+                LayoutModel
+                    (
                     title = "Innovis Step 1 Letter",
                     description = "Request a copy of your credit report and/or freeze your credit report from Innovis.",
                     resourceId = R.layout.innovis_step_1_letter_layout,
@@ -51,6 +69,12 @@
                     title = "Innovis Step 2 Letter",
                     description = "Dispute and remove inaccurate names, addresses, phone numbers and employers from your credit report from Innovis.",
                     resourceId = R.layout.innovis_step_2_letter_layout,
+                ),
+                LayoutModel
+                    (
+                    title = "Innovis Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from Innovis.",
+                    resourceId = R.layout.innovis_complete_letter_layout,
                 ),
                 LayoutModel
                     (
@@ -66,6 +90,12 @@
                 ),
                 LayoutModel
                     (
+                    title = "LexiNexis Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from LexisNexis.",
+                    resourceId = R.layout.lexisnexis_complete_letter_layout,
+                ),
+                LayoutModel
+                    (
                     title = "SageStream Step 1 Letter",
                     description = "Request a copy of your credit report and/or freeze your credit report from SageStream.",
                     resourceId = R.layout.sagestream_step_1_letter_layout,
@@ -75,6 +105,12 @@
                     title = "SageStream Step 2 Letter",
                     description = "Dispute and remove inaccurate names, addresses, phone numbers and employers from your credit report from SageStream.",
                     resourceId = R.layout.sagestream_step_2_letter_layout,
+                ),
+                LayoutModel
+                    (
+                    title = "SageStream Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from SageStream.",
+                    resourceId = R.layout.sagestream_complete_letter_layout,
                 ),
                 LayoutModel
                     (
@@ -88,6 +124,12 @@
                     description = "Dispute and remove inaccurate names, addresses, phone numbers and employers from your credit report from TransUnion.",
                     resourceId = R.layout.transunion_step_2_letter_layout,
                 ),
+                LayoutModel
+                    (
+                    title = "TransUnion Complete Letter",
+                    description = "Use our complete letter to take full control of writing letters regarding your credit report from TransUnion.",
+                    resourceId = R.layout.transunion_complete_letter_layout,
+                )
             )
         }
     }
