@@ -97,6 +97,14 @@
                         android:text="LexisNexis"
                         android:enabled="false" />
 
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/button9"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Complete Step 1"
+                        android:enabled="false" />
+
                 </LinearLayout>
 
                 <com.google.android.material.textview.MaterialTextView
@@ -122,7 +130,7 @@
             android:layout_marginTop="16dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button9"
+            android:id="@+id/button10"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,7 +153,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button10"
+                    android:id="@+id/button11"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -153,7 +161,7 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button11"
+                    android:id="@+id/button12"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -161,7 +169,7 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button12"
+                    android:id="@+id/button13"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,7 +177,7 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button13"
+                    android:id="@+id/button14"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -177,7 +185,7 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button14"
+                    android:id="@+id/button15"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,7 +193,7 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button15"
+                    android:id="@+id/button16"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -193,11 +201,19 @@
                     android:enabled="false" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/button16"
+                    android:id="@+id/button17"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="LexisNexis"
+                    android:enabled="false" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button18"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Complete Step 2"
                     android:enabled="false" />
 
             </LinearLayout>
@@ -207,13 +223,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="In Step 2 , you will freeze your reports with each of the agencies and request your credit report from them. &#xA;&#xA;Estimated Timeframe: 30 Days"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/text_view_background"
-                android:paddingLeft="16dp" />
+                android:padding="10dp"
+                android:text="In Step 2 , you will freeze your reports with each of the agencies and request your credit report from them. &#xA;&#xA;Estimated Timeframe: 30 Days"
+                />
         </LinearLayout>
 
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewExplanation5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_view_background"
+            android:padding="10dp"
+            android:text="In Step 3, you will dispute and remove inaccurate accounts, inquiries, and public records. &#xA;&#xA;This step will normally require 1 to 2 letters to achieve your goal. &#xA;&#xA;Estimated Timeframe: 30 Days - 60 Days"
+            android:visibility="gone"
+            android:layout_marginTop="16dp" />
+
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button17"
+            android:id="@+id/button19"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
