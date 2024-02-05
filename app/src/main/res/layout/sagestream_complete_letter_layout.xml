@@ -44,7 +44,7 @@
                     android:autofillHints="@string/first_name"
                     android:ems="10"
                     android:hint="@string/first_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
                     android:nextFocusDown="@+id/lastNameEditText" />
 
                 <EditText
@@ -55,7 +55,7 @@
                     android:autofillHints="@string/last_name"
                     android:ems="10"
                     android:hint="@string/last_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
                     android:nextFocusDown="@+id/addressEditText" />
 
             </TableRow>
@@ -73,7 +73,7 @@
                     android:autofillHints="@string/address"
                     android:ems="14"
                     android:hint="@string/address"
-                    android:inputType="textPostalAddress"
+                    android:inputType="textCapWords"
                     android:nextFocusDown="@+id/apartmentEditText" />
 
                 <EditText
@@ -84,7 +84,7 @@
                     android:autofillHints="@string/apt"
                     android:ems="4"
                     android:hint="@string/apt"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
                     android:nextFocusDown="@+id/cityEditText" />
 
             </TableRow>
@@ -102,7 +102,7 @@
                     android:autofillHints="@string/city"
                     android:ems="10"
                     android:hint="@string/city"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:nextFocusDown="@+id/stateEditText" />
 
                 <EditText
@@ -142,6 +142,7 @@
                     android:ems="10"
                     android:hint="@string/last_4_of_social"
                     android:inputType="number"
+                    android:maxLength="4"
                     android:nextFocusDown="@+id/birthDatePickerButton" />
 
                 <Button
@@ -162,27 +163,11 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/datePickerButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:nextFocusDown="@+id/section2Spinner"
-                    android:text="@string/select_date"
-                    android:textColor="@color/white" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/radioButtonsInstructionsLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="@string/please_select_the_items_you_would_nlike_to_include_in_your_letter" />
 
             </TableRow>

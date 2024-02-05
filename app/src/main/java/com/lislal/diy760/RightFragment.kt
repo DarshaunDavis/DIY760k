@@ -1,15 +1,20 @@
 package com.lislal.diy760
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
+import java.util.Calendar
 
 class RightFragment : Fragment() {
     private lateinit var customContainer: FrameLayout // Declare as class property
@@ -83,6 +88,13 @@ class RightFragment : Fragment() {
                 val customView = LayoutInflater.from(requireContext()).inflate(action.layoutResId, customContainer, false)
                 customContainer.addView(customView)
 
+                // Setup the birthDatePickerButton if it exists in the current customView
+                val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
+                birthDatePickerButton?.setOnClickListener {
+                    // Show DatePickerDialog and update birthDatePickerButton's text with the selected date
+                    showDatePickerDialog(birthDatePickerButton) // Use the updated method that takes a Button
+                }
+
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val helloTextView = customView.findViewById<TextView>(R.id.generatedContent) // Updated to use the correct TextView ID
                 generateButton?.setOnClickListener {
@@ -93,6 +105,21 @@ class RightFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showDatePickerDialog(button: Button) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, dayOfMonth ->
+            // Format the selected date and set it as the button text
+            val selectedDate = "${selectedMonth + 1}/$dayOfMonth/$selectedYear"
+            button.text = selectedDate // Update the button text instead of EditText
+        }, year, month, day)
+
+        datePickerDialog.show()
     }
 
     private fun setupSpecialButtons(buttons: List<Button>, textViewExplanation: List<TextView>, containers: List<LinearLayout>, customContainer: FrameLayout) {
@@ -151,3 +178,4 @@ class RightFragment : Fragment() {
         }
     }
 }
+
