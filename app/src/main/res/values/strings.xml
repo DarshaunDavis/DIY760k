@@ -10,7 +10,6 @@
     <string name="already_registered_login">Already Registered? Login</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="log_out">Log Out</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="build_your_dispute_letter">Build Your Dispute Letter!</string>
     <string name="last_name">Last Name</string>
@@ -49,4 +48,36 @@
     <string name="button">button</string>
     <string name="sagestream_dispute_letter">SageStream Dispute Letter</string>
     <string name="copy_of_your_credit_report">Do you want a Free copy of your credit report?</string>
+
+
+    <string name="experian_title">Experian</string>
+    <string name="equifax_title">Equifax</string>
+    <string name="transunion_title">TranUnion</string>
+    <string name="sagestream_title">SageStream</string>
+    <string name="corelogic_title">CoreLogic</string>
+    <string name="innovis_title">Innovis</string>
+    <string name="lexisnexis_title">LexisNexis</string>
+    <string name="search">Search</string>
+
+    <string-array name="company_addresses">
+        <item>Experian\nP.O. Box 4500\nAllen, TX 75013</item>
+        <item>Equifax\nP.O. Box 740256\nAtlanta, GA 30374–0256</item>
+        <item>TransUnion Consumer Solutions\nP.O. Box 2000\nChester, PA 19016–2000</item>
+        <item>SageStream, LLC\nLexisNexis Risk Solutions Consumer Center\nP.O. Box 105108\nAtlanta, GA 30348–5108</item>
+        <item>CoreLogic Credco\nP.O. Box 509124\nSan Diego, CA 92150</item>
+        <item>Innovis Consumer Assistance\nPO Box 530086\nAtlanta, GA 30353–0086</item>
+        <item>LexisNexis Risk Solutions Consumer Center\nP.O. Box 105108\nAtlanta, GA 30348–5108</item>
+    </string-array>
+
+    <string-array name="company_names">
+        <item>Experian</item>
+        <item>Equifax</item>
+        <item>TranUnion</item>
+        <item>SageStream</item>
+        <item>CoreLogic</item>
+        <item>Innovis</item>
+        <item>LexisNexis</item>
+        <item>Search</item>
+    </string-array>
+
 </resources>

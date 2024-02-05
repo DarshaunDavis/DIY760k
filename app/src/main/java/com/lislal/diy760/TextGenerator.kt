@@ -1,15 +1,17 @@
 package com.lislal.diy760
 
+import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class TextGenerator {
-    fun generateTextFromLayout(customView: View): String {
-        // Initialize an empty StringBuilder
+    fun generateTextFromLayout(customView: View, context: Context): String {
         val stringBuilder = StringBuilder()
 
         // Example of handling different data entry methods
@@ -65,6 +67,25 @@ class TextGenerator {
         val currentDate = getCurrentDate()
         stringBuilder.append("Date: $currentDate\n")
 
+        // New code to add the address based on title
+        val titleView = customView.findViewById<TextView>(R.id.headerTextView)
+        titleView?.let {
+            val title = it.text.toString()
+            val addresses = getAddressForTitle(context, title)
+            if (addresses.isNotEmpty()) {
+                stringBuilder.append("\n$addresses\n\n")
+            }
+        }
+
+        // Assuming the layout name is similar to the title and you can extract the first word
+        val companyName = titleView?.text.toString().split(" ")[0] // Extract the first word
+        val formattedCompanyName = companyName.replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase(
+                Locale.getDefault()
+            ) else it.toString()
+        }
+        stringBuilder.append("Dear $formattedCompanyName,\n\n")
+
         // Add more checks for other input types if needed
         // For example, you could check for RadioButtons, Spinners, etc.
 
@@ -76,4 +97,14 @@ class TextGenerator {
         val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
         return dateFormat.format(calendar.time)
     }
+
+    private fun getAddressForTitle(context: Context, title: String): String {
+        val addresses = context.resources.getStringArray(R.array.company_addresses)
+        // Assuming the title format is "Experian Step 1 Letter", split by space and get the first word
+        val keyWord = title.split(" ").firstOrNull() ?: return ""
+        // Find the address that starts with the key word
+        return addresses.firstOrNull { it.startsWith(keyWord, ignoreCase = true) } ?: ""
+    }
+
+
 }

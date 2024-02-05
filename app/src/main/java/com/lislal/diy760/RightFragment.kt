@@ -98,8 +98,8 @@ class RightFragment : Fragment() {
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val helloTextView = customView.findViewById<TextView>(R.id.generatedContent) // Updated to use the correct TextView ID
                 generateButton?.setOnClickListener {
-                    // Use TextGenerator to get the display text
-                    val displayText = textGenerator.generateTextFromLayout(customView)
+                    // Use TextGenerator to get the display text, passing 'requireContext()' as the context
+                    val displayText = textGenerator.generateTextFromLayout(customView, requireContext())
                     helloTextView?.visibility = View.VISIBLE
                     helloTextView?.text = displayText // Set the generated text
                 }
