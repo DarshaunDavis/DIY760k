@@ -73,6 +73,8 @@ class RightFragment : Fragment() {
         buttons: List<Button>,
         customContainer: FrameLayout
     ) {
+        val textGenerator = TextGenerator() // Create an instance of TextGenerator
+
         buttonActions.forEach { (index, action) ->
             buttons[index].setOnClickListener {
                 customContainer.visibility = View.VISIBLE
@@ -84,8 +86,10 @@ class RightFragment : Fragment() {
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val helloTextView = customView.findViewById<TextView>(R.id.generatedContent) // Updated to use the correct TextView ID
                 generateButton?.setOnClickListener {
+                    // Use TextGenerator to get the display text
+                    val displayText = textGenerator.generateTextFromLayout(customView)
                     helloTextView?.visibility = View.VISIBLE
-                    helloTextView?.text = "Hello!" // Display "Hello!" in the TextView
+                    helloTextView?.text = displayText // Set the generated text
                 }
             }
         }

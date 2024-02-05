@@ -44,7 +44,7 @@
                     android:autofillHints="@string/first_name"
                     android:ems="10"
                     android:hint="@string/first_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
                     android:nextFocusDown="@+id/lastNameEditText" />
 
                 <EditText
@@ -55,7 +55,7 @@
                     android:autofillHints="@string/last_name"
                     android:ems="10"
                     android:hint="@string/last_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
                     android:nextFocusDown="@+id/addressEditText" />
 
             </TableRow>
@@ -73,7 +73,7 @@
                     android:autofillHints="@string/address"
                     android:ems="14"
                     android:hint="@string/address"
-                    android:inputType="textPostalAddress"
+                    android:inputType="textCapWords"
                     android:nextFocusDown="@+id/apartmentEditText" />
 
                 <EditText
@@ -102,7 +102,7 @@
                     android:autofillHints="@string/city"
                     android:ems="10"
                     android:hint="@string/city"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:nextFocusDown="@+id/stateEditText" />
 
                 <EditText
