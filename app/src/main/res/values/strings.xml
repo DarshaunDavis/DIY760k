@@ -21,7 +21,7 @@
     <string name="last_4_of_social">Last 4 of Social</string>
     <string name="select_birthdate">Select Birthdate</string>
     <string name="select_date">Select Date</string>
-    <string name="please_select_the_items_you_would_nlike_to_include_in_your_letter">Please select the items you would \nlike to include in your letter:</string>
+    <string name="please_select_the_items_you_would_nlike_to_include_in_your_letter">Please select the items you would like to include in your letter:</string>
     <string name="dispute_inaccurate_or_incorrect_names">Dispute inaccurate or incorrect names?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -81,113 +81,177 @@
     </string-array>
 
     <string-array name="section1_versions">
-        <item>Section 1.1</item>
-        <item>Section 1.2</item>
-        <item>Section 1.3</item>
-        <item>Section 1.4</item>
-        <item>Section 1.5</item>
-        <item>Section 1.6</item>
-        <item>Section 1.7</item>
-        <item>Section 1.8</item>
+        <item>I got a credit report, but it has mistakes. I need your help to fix it right away, because some important rules say we should.
+    </item>
+        <item>I looked at my credit report, and I found some mistakes in it. Please help me fix these errors quickly because the Fair Credit Reporting Act says we need to do this.</item>
+        <item>I recently reviewed my credit report and discovered inaccuracies. Please address these issues promptly, as the Fair Credit Reporting Act (FCRA) requires us to do so under Sections 611 and 623.</item>
+        <item>I recently obtained and reviewed my credit report, finding several inaccuracies that need your immediate attention. Please rectify these issues in accordance with the Fair Credit Reporting Act (FCRA) Sections 611 and 623.</item>
+        <item>Upon reviewing my recently obtained credit report, I have identified inaccuracies that necessitate prompt resolution. Please address these issues in compliance with Sections 611 and 623 of the Fair Credit Reporting Act (FCRA).</item>
+        <item>I have acquired and scrutinized my credit report, revealing discrepancies that demand expeditious attention. Kindly rectify these inaccuracies in adherence to the Fair Credit Reporting Act (FCRA) Sections 611 and 623.</item>
+        <item>In reference to my recently procured credit report, a thorough examination revealed inaccuracies that warrant immediate intervention. I kindly request that you address these discrepancies in accordance with the stipulations set forth in Sections 611 and 623 of the Fair Credit Reporting Act (FCRA).</item>
+        <item>I am writing to you in regards to my credit report, which I recently obtained and reviewed. I have found inaccuracies that require your immediate attention, in accordance with the Fair Credit Reporting Act (FCRA) Sections 611 and 623.</item>
     </string-array>
 
     <string-array name="section2_versions">
-        <item>Section 2.1</item>
-        <item>Section 2.2</item>
-        <item>Section 2.3</item>
-        <item>Section 2.4</item>
-        <item>Section 2.5</item>
-        <item>Section 2.6</item>
-        <item>Section 2.7</item>
-        <item>Section 2.8</item>
+        <item>I need you to fix the wrong names on my credit report. Please change them to the right names. Thank you!" +
+                " This is because a rule called FCRA Section 611 says so.</item>
+        <item>Can you please remove the incorrect name(s) from my credit report? The FCRA Section 611 says we need to do this.I\'m asking you to correct the names on my credit report that are not accurate. They should be fixed to show the correct names. Please take care of this issue promptly. +
+                "This request is in accordance with FCRA Section 611.</item>
+        <item>I kindly request that you address the issue of inaccurate names on my credit report. It\'s important that these names are corrected to reflect the accurate information. I appreciate your prompt attention to this matter.</item>
+        <item>I request that you rectify the inaccuracies in the names listed on my credit report. It is crucial that the names are updated to accurately represent my personal information. I trust that you will handle this matter promptly.</item>
+        <item>I insist on the necessary corrections to be made to the names on my credit report. It is vital that the names accurately represent my personal information. I trust that you will promptly address this matter.</item>
+        <item>I formally request that you rectify the inaccuracies pertaining to the names on my credit report. It is important that the names are updated to accurately reflect my personal information. I expect your prompt attention to this matter.</item>
+        <item>I demand that you promptly rectify the inaccuracies in the names listed on my credit report. It is crucial that the names accurately represent my personal information. I trust that you will take the necessary steps to resolve this matter expeditiously.</item>
+        <item>I formally request that you address the issue of incorrect names on my credit report. It is imperative that these inaccuracies are rectified to ensure the accuracy and integrity of my personal information. I expect a prompt resolution to this matter in accordance with the laws governing credit reporting. +
+                "This request is in accordance with FCRA Section 611.</item>
     </string-array>
 
     <string-array name="section3_versions">
-        <item>Section 3.1</item>
-        <item>Section 3.2</item>
-        <item>Section 3.3</item>
-        <item>Section 3.4</item>
-        <item>Section 3.5</item>
-        <item>Section 3.6</item>
-        <item>Section 3.7</item>
-        <item>Section 3.8</item>
+        <item>I need you to fix the wrong addresses on my credit report. Please change them to the right addresses. Thank you! +
+                "A rule called FCRA Section 623 says you must do this.</item>
+        <item>I\'m asking you to correct the addresses on my credit report that are not accurate. They should be fixed to show the correct addresses. Please take care of this issue promptly. +
+                "This is needed because of FCRA Section 623.</item>
+        <item>I kindly request that you address the issue of inaccurate addresses on my credit report. It\'s important that these addresses are corrected to reflect the accurate information. I appreciate your prompt attention to this matter. +
+                "This action is required under FCRA Section 623.</item>
+        <item>I strongly request that you remove the following erroneous address(es) from my credit report:I request that you rectify the inaccuracies in the addresses listed on my credit report. It is crucial that the addresses are updated to accurately represent my personal information. I trust that you will handle this matter promptly. +
+                "This request complies with FCRA Section 623.</item>
+        <item>I insist on the necessary corrections to be made to the addresses on my credit report. It is vital that the addresses accurately represent my personal information. I trust that you will promptly address this matter. +
+                "This action is mandated by FCRA Section 623.</item>
+        <item>I formally request that you rectify the inaccuracies pertaining to the addresses on my credit report. It is important that the addresses are updated to accurately reflect my personal information. I expect your prompt attention to this matter. +
+                "This demand is in compliance with FCRA Section 623.</item>
+        <item>I demand that you promptly rectify the inaccuracies in the addresses listed on my credit report. It is crucial that the addresses accurately represent my personal information. I trust that you will take the necessary steps to resolve this matter expeditiously. +
+                "This request is pursuant to the provisions of FCRA Section 623.</item>
+        <item>I formally request that you address the issue of incorrect addresses on my credit report. It is imperative that these inaccuracies are rectified to ensure the accuracy and integrity of my personal information. I expect a prompt resolution to this matter in accordance with the laws governing credit reporting. +
+                "This request is in accordance with FCRA Section 623.</item>
     </string-array>
 
     <string-array name="section4_versions">
-        <item>Section 4.1</item>
-        <item>Section 4.2</item>
-        <item>Section 4.3</item>
-        <item>Section 4.4</item>
-        <item>Section 4.5</item>
-        <item>Section 4.6</item>
-        <item>Section 4.7</item>
-        <item>Section 4.8</item>
+        <item>I need you to fix the wrong accounts on my credit report. Please correct the accounts that are not right. Thank you! +
+                "A rule called FCRA Section 623 says you must do this.</item>
+        <item>I\'m asking you to fix the accounts on my credit report that are not accurate. They should be corrected because they are not correct. Please take care of this promptly. +
+                "This is needed because of FCRA Section 623.</item>
+        <item>I kindly request that you address the issue of inaccurate accounts on my credit report. It\'s important that these accounts are fixed to reflect the accurate information. I appreciate your prompt attention to this matter. +
+                "This action is required under FCRA Section 623.</item>
+        <item>I request that you rectify the inaccuracies in the accounts listed on my credit report. It is crucial that these accounts are updated to accurately represent my financial information. I trust that you will handle this matter promptly. +
+                "This request complies with FCRA Section 623.</item>
+        <item>I insist on the necessary corrections to be made to the accounts on my credit report. It is vital that these accounts are corrected to accurately reflect my financial history. I trust that you will promptly address this matter. +
+                "This action is mandated by FCRA Section 623.</item>
+        <item>I formally request that you rectify the inaccuracies pertaining to the accounts on my credit report. It is important that these accounts are fixed to accurately represent my financial information. I expect your prompt attention to this matter. +
+                "This demand is in compliance with FCRA Section 623.</item>
+        <item>I demand that you promptly rectify the inaccuracies in the accounts listed on my credit report. It is crucial that these accounts are fixed to reflect my financial history accurately. I trust that you will take the necessary steps to resolve this matter expeditiously. +
+                "This request is pursuant to the provisions of FCRA Section 623.</item>
+        <item>I formally request that you address the issue of incorrect accounts on my credit report. It is imperative that these inaccuracies are rectified by fixing the inaccurate accounts. I expect a prompt resolution to this matter in accordance with the laws governing credit reporting. +
+                "This request is in accordance with FCRA Section 623.</item>
     </string-array>
 
     <string-array name="section5_versions">
-        <item>Section 5.1</item>
-        <item>Section 5.2</item>
-        <item>Section 5.3</item>
-        <item>Section 5.4</item>
-        <item>Section 5.5</item>
-        <item>Section 5.6</item>
-        <item>Section 5.7</item>
-        <item>Section 5.8</item>
+        <item>I need you to take out the wrong inquiries from my credit report. Please remove the inquiries that are not right. Thank you! +
+                "A rule called FCRA Section 623 says you must do this.</item>
+        <item>I\'m asking you to remove the inquiries from my credit report that are not accurate. They should be taken off because they are not correct. Please take care of this promptly. +
+                "This is needed because of FCRA Section 623.</item>
+        <item>I kindly request that you address the issue of inaccurate inquiries on my credit report. It\'s important that these inquiries are removed as they are not accurate. I appreciate your prompt attention to this matter. +
+                "This action is required under FCRA Section 623.</item>
+        <item>I request that you remove the inaccurate inquiries listed on my credit report. It is crucial that these inquiries are deleted as they do not reflect my actual credit activities. I trust that you will handle this matter promptly. +
+                "This request complies with FCRA Section 623.</item>
+        <item>I insist on the necessary removal of the inaccurate inquiries from my credit report. It is vital that these inquiries are taken off as they do not accurately represent my credit history. I trust that you will promptly address this matter. +
+                "This action is mandated by FCRA Section 623.</item>
+        <item>I formally request that you rectify the inaccuracies pertaining to the inquiries on my credit report. It is important that these inquiries are removed as they do not accurately represent my credit activities. I expect your prompt attention to this matter. +
+                "This demand is in compliance with FCRA Section 623.</item>
+        <item>I demand that you promptly remove the inaccuracies in the inquiries listed on my credit report. It is crucial that these inquiries are deleted as they do not reflect my credit history accurately. I trust that you will take the necessary steps to resolve this matter expeditiously. +
+                "This request is pursuant to the provisions of FCRA Section 623.</item>
+        <item>I formally request that you address the issue of incorrect inquiries on my credit report. It is imperative that these inaccuracies are rectified by removing the inaccurate inquiries. I expect a prompt resolution to this matter in accordance with the laws governing credit reporting. +
+                "This request is in accordance with FCRA Section 623.</item>
     </string-array>
 
     <string-array name="section6_versions">
-        <item>Section 6.1</item>
-        <item>Section 6.2</item>
-        <item>Section 6.3</item>
-        <item>Section 6.4</item>
-        <item>Section 6.5</item>
-        <item>Section 6.6</item>
-        <item>Section 6.7</item>
-        <item>Section 6.8</item>
+        <item>I need you to take out the wrong public records from my credit report. Please remove the records that are not right. Thank you! +
+                "A rule called FCRA Section 623 says you must do this.</item>
+        <item>I\'m asking you to remove the public records from my credit report that are not accurate. They should be taken off because they are not correct. Please take care of this promptly. +
+                "This is needed because of FCRA Section 623.</item>
+        <item>I kindly request that you address the issue of inaccurate public records on my credit report. It\'s important that these records are removed as they are not accurate. I appreciate your prompt attention to this matter. +
+                "This action is required under FCRA Section 623.</item>
+        <item>I request that you remove the inaccurate public records listed on my credit report. It is crucial that these records are deleted as they do not reflect my actual legal history. I trust that you will handle this matter promptly. +
+                "This request complies with FCRA Section 623.</item>
+        <item>I insist on the necessary removal of the inaccurate public records from my credit report. It is vital that these records are taken off as they do not accurately represent my legal history. I trust that you will promptly address this matter. +
+                "This action is mandated by FCRA Section 623.</item>
+        <item>I formally request that you rectify the inaccuracies pertaining to the public records on my credit report. It is important that these records are removed as they do not accurately represent my legal history. I expect your prompt attention to this matter. +
+                "This demand is in compliance with FCRA Section 623.</item>
+        <item>I demand that you promptly remove the inaccuracies in the public records listed on my credit report. It is crucial that these records are deleted as they do not reflect my legal history accurately. I trust that you will take the necessary steps to resolve this matter expeditiously. +
+                "This request is pursuant to the provisions of FCRA Section 623.</item>
+        <item>I formally request that you address the issue of incorrect public records on my credit report. It is imperative that these inaccuracies are rectified by removing the inaccurate records. I expect a prompt resolution to this matter in accordance with the laws governing credit reporting. +
+                "This request is in accordance with FCRA Section 623.</item>
     </string-array>
 
     <string-array name="section7_versions">
-        <item>Section 7.1</item>
-        <item>Section 7.2</item>
-        <item>Section 7.3</item>
-        <item>Section 7.4</item>
-        <item>Section 7.5</item>
-        <item>Section 7.6</item>
-        <item>Section 7.7</item>
-        <item>Section 7.8</item>
+        <item>Please stop others from seeing my credit report by following a rule called FCRA Section 605B. This will help keep my information safe.</item>
+        <item>SI ask you to put a freeze on my credit report, so no one can access it without my permission, as stated in FCRA Section 605B. This will stop others from looking at it and help protect me from identity theft and fraud.</item>
+        <item>I request that you freeze my credit report as allowed by FCRA Section 605B. This action will restrict access to my credit information, making it more difficult for unauthorized individuals to use my identity or engage in fraudulent activities.</item>
+        <item>I formally request that you implement a credit report freeze in accordance with FCRA Section 605B. This measure will limit the access to my credit report, safeguarding it from unauthorized use and potential identity theft or fraud.</item>
+        <item>I insist on the implementation of a credit report freeze as authorized by FCRA Section 605B. This protective measure will restrict access to my credit information, reducing the risk of unauthorized usage and mitigating potential identity theft or fraudulent activities.</item>
+        <item>I strongly urge you to enforce a credit report freeze in compliance with FCRA Section 605B. By implementing this safeguard, access to my credit report will be restricted, significantly reducing the chances of unauthorized use, identity theft, or fraudulent behavior.</item>
+        <item>I demand the immediate initiation of a credit report freeze in accordance with FCRA Section 605B. This proactive step will effectively limit access to my credit information, ensuring enhanced protection against identity theft, fraud, and unauthorized use.</item>
+        <item>I formally request the implementation of a credit report freeze as stipulated by FCRA Section 605B. This measure will securely restrict access to my credit report, providing a robust safeguard against potential identity theft, fraud, and unauthorized usage.</item>
     </string-array>
 
     <string-array name="section8_versions">
-        <item>Section 8.1</item>
-        <item>Section 8.2</item>
-        <item>Section 8.3</item>
-        <item>Section 8.4</item>
-        <item>Section 8.5</item>
-        <item>Section 8.6</item>
-        <item>Section 8.7</item>
-        <item>Section 8.8</item>
+        <item>Please stop sending me special offers by following a rule called FCRA Section 604(e)(1)(A).</item>
+        <item>I want you to remove my name from the list of people who" +
+                " get offers in the mail without asking, as stated in FCRA Section 604(e)(1)(A). I don\'t want those offers.</item>
+        <item>I request that you opt me out of receiving pre-screened offers as authorized by FCRA Section 604(e)(1)(A). I don\'t want to receive unsolicited offers in the mail.</item>
+        <item>I formally request that you exercise my right to opt out of receiving pre-screened offers as provided by FCRA Section 604(e)(1)(A). It is my preference not to receive unsolicited offers through the mail.</item>
+        <item>I insist on exercising my right to opt out of receiving pre-screened offers in accordance with FCRA Section 604(e)(1)(A). I do not wish to receive unsolicited offers by mail.</item>
+        <item>I strongly urge you to honor my request to opt out of receiving pre-screened offers as stipulated by FCRA Section 604(e)(1)(A). It is my explicit preference to decline unsolicited offers through mail.</item>
+        <item>I demand that you promptly opt me out of receiving pre-screened offers in strict accordance with FCRA Section 604(e)(1)(A). I expressly choose not to receive unsolicited offers through mail.</item>
+        <item>I formally request that you comply with my right to opt out of receiving pre-screened offers as mandated by FCRA Section 604(e)(1)(A). It is essential that you honor my preference to decline unsolicited offers sent through mail.</item>
     </string-array>
 
     <string-array name="section9_versions">
-        <item>Section 9.1</item>
-        <item>Section 9.2</item>
-        <item>Section 9.3</item>
-        <item>Section 9.4</item>
-        <item>Section 9.5</item>
-        <item>Section 9.6</item>
-        <item>Section 9.7</item>
-        <item>Section 9.8</item>
+        <item>I think I should get a free copy of my credit information. Please send me a free copy of all the stuff about me and anything else you or your friends have.</item>
+        <item>I believe I have the right to receive a free copy of my consumer file. Kindly provide me with a free copy of all the details in my consumer credit file and any other information or documents that you or any of your partners keep regarding me.</item>
+        <item>I understand that I have the privilege of receiving a free copy of my consumer file. I hereby request a complimentary copy of the contents of my consumer credit file, along with any additional information or documents maintained by you or your affiliates pertaining to me.</item>
+        <item>I am aware of my entitlement to a free copy of my consumer file. I formally request that you furnish me with a cost-free copy of the contents within my consumer credit file, as well as any other relevant information or documents retained by either you or your affiliated entities concerning my profile.</item>
+        <item>I am cognizant of my right to obtain a complimentary copy of my consumer file. I hereby submit a formal request for the provision of a free copy encompassing the contents of my consumer credit file, inclusive of any supplementary information or documents held by your organization or its affiliates in reference to my personal profile.</item>
+        <item>I am well-versed in my entitlement to receive a free copy of my consumer file. I hereby formally request the provision of a complimentary copy, encompassing the entire contents of my consumer credit file, in addition to any supplementary information or documents retained by your organization or its affiliated entities pertaining to my personal profile.</item>
+        <item>I am fully aware of my legal right to receive a cost-free copy of my consumer file. Consequently, I submit a formal request for the provision of a complimentary copy, which should encompass the comprehensive contents of my consumer credit file, inclusive of any supplemental information or documents that your organization or its affiliated entities may possess pertaining to my personal profile.></item>
+        <item>I am well-informed about my statutory entitlement to obtain a complimentary copy of my consumer file. In light of this, I hereby submit a formal and legally binding request for the immediate provision of a cost-free copy, comprehensively encapsulating the contents of my consumer credit file, as well as all associated supplementary information or documents maintained by your organization or its affiliated entities pertaining to my personal profile.</item>
     </string-array>
 
     <string-array name="section10_versions">
-        <item>Section 10.1</item>
-        <item>Section 10.2</item>
-        <item>Section 10.3</item>
-        <item>Section 10.4</item>
-        <item>Section 10.5</item>
-        <item>Section 10.6</item>
-        <item>Section 10.7</item>
-        <item>Section 10.8</item>
+        <item>Thanks for helping me quickly. Tell me if you need more information.\n" +
+                "\n" +
+                "Your friend,</item>
+        <item>Thank you for your fast help. Please let me know if you need any more details from me.\n" +
+                "\n" +
+                "Sincerely,</item>
+        <item>I appreciate your prompt attention to this issue. If you need any additional information, please don\'t hesitate to ask.\n" +
+                "\n" +
+                "Respectfully,</item>
+        <item>Thank you for addressing this matter swiftly. If you require any further information, kindly let me know.\n" +
+                "\n" +
+                "Best regards,</item>
+        <item>I\'m grateful for your prompt attention to this matter. Please inform me if you need any additional information.\n" +
+                "\n" +
+                "Kind regards,</item>
+        <item>Thank you for your expedient attention to this issue. Should you require any further information, please do not hesitate to contact me.\n" +
+                "\n" +
+                "Respectfully,</item>
+        <item>I sincerely appreciate your prompt attention to this matter. If any further information is required, kindly do not hesitate to reach out.\n" +
+                "\n" +
+                "Yours faithfully,</item>
+        <item>Thank you for your prompt attention to this matter. Please let me know if you require any further information from me.\n" +
+                "\n" +
+                "Sincerely,</item>
+    </string-array>
+
+    <string-array name="section11_versions">
+        <item>I put some papers with this:</item>
+        <item>Here are the papers I\'ve attached:</item>
+        <item>I have attached these documents for you:</item>
+        <item>Attached you\'ll find the following documents:</item>
+        <item>Please find the attached documents listed below:</item>
+        <item>Enclosed, please find the subsequent documents:</item>
+        <item>Kindly find the ensuing documents attached herewith:</item>
+        <item>Attached please find the following documents:</item>
     </string-array>
 
 </resources>

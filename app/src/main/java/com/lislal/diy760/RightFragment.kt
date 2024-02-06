@@ -138,23 +138,27 @@ class RightFragment : Fragment() {
 
         radioGroupIds.forEach { radioGroupId ->
             val radioGroup = view.findViewById<RadioGroup>(radioGroupId)
-            radioGroup?.setOnCheckedChangeListener { group, checkedId ->
-                val radioButton = group.findViewById<RadioButton>(checkedId)
-                val selection = radioButton.text.toString()
-                radioSelections[group.id] = selection
+            if (radioGroup == null) {
+                Log.e("SetupRadioButtons", "RadioGroup with ID $radioGroupId not found.")
+            } else {
+                radioGroup.setOnCheckedChangeListener { group, checkedId ->
+                    val radioButton = group.findViewById<RadioButton>(checkedId)
+                    val selection = radioButton.text.toString()
+                    radioSelections[group.id] = selection
 
-                // Log to debug
-                Log.d("RadioSelection", "Group ${group.id} selection: $selection")
+                    // Log to debug
+                    Log.d("RadioSelection", "Group ${group.id} selection: $selection")
 
-                // Update visibility for mapped TableLayouts, if any
-                tableLayoutsIds[radioGroupId]?.let { tableLayoutId ->
-                    val tableLayout = view.findViewById<TableLayout>(tableLayoutId)
-                    tableLayout?.visibility = if (selection == "Yes") View.VISIBLE else View.GONE
+                    // Update visibility for mapped TableLayouts, if any
+                    tableLayoutsIds[radioGroupId]?.let { tableLayoutId ->
+                        val tableLayout = view.findViewById<TableLayout>(tableLayoutId)
+                        tableLayout?.visibility =
+                            if (selection == "Yes") View.VISIBLE else View.GONE
+                    }
                 }
             }
         }
     }
-
 
 
 
