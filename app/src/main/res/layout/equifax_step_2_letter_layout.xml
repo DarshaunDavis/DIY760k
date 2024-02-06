@@ -209,13 +209,13 @@
             <TableLayout
                 android:id="@+id/name_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/name_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/inaccurate_name"
@@ -230,8 +230,7 @@
                 <TableRow
                     android:id="@+id/name_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/name_spinner"
@@ -286,13 +285,13 @@
             <TableLayout
                 android:id="@+id/address_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/address_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/address_form"
@@ -316,8 +315,7 @@
                 <TableRow
                     android:id="@+id/address_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/city_form"
@@ -351,8 +349,7 @@
                 <TableRow
                     android:id="@+id/address_form_row3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/address_spinner"
@@ -386,8 +383,7 @@
                     android:id="@+id/address_text_fields_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/address_first_edit_text"

@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TableLayout
 import android.widget.TextView
 import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -18,6 +21,7 @@ import java.util.Calendar
 
 class RightFragment : Fragment() {
     private lateinit var customContainer: FrameLayout // Declare as class property
+    private val radioSelections = mutableMapOf<Int, String>()
 
     data class ButtonAction(
         val layoutResId: Int,
@@ -28,6 +32,10 @@ class RightFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_right, container, false)
+
+        // Initialization and setup calls...
+        setupRadioButtons(view) // Setup radio buttons and track selections
+
 
         val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
 
@@ -48,15 +56,15 @@ class RightFragment : Fragment() {
         )
 
         val buttonActions = mapOf(
-            1 to ButtonAction(R.layout.experian_step_1_letter_layout, 2),
-            2 to ButtonAction(R.layout.equifax_step_1_letter_layout, null),
+            1 to ButtonAction(R.layout.equifax_step_1_letter_layout, 2),
+            2 to ButtonAction(R.layout.experian_step_1_letter_layout, null),
             3 to ButtonAction(R.layout.transunion_step_1_letter_layout, null),
             4 to ButtonAction(R.layout.sagestream_step_1_letter_layout, null),
             5 to ButtonAction(R.layout.corelogic_step_1_letter_layout, null),
             6 to ButtonAction(R.layout.innovis_step_1_letter_layout, null),
             7 to ButtonAction(R.layout.lexisnexis_step_1_letter_layout, null),
-            10 to ButtonAction(R.layout.experian_step_2_letter_layout, 11),
-            11 to ButtonAction(R.layout.equifax_step_2_letter_layout, null),
+            10 to ButtonAction(R.layout.equifax_step_2_letter_layout, 11),
+            11 to ButtonAction(R.layout.experian_step_2_letter_layout, null),
             12 to ButtonAction(R.layout.transunion_step_2_letter_layout, null),
             13 to ButtonAction(R.layout.sagestream_step_2_letter_layout, null),
             14 to ButtonAction(R.layout.corelogic_step_2_letter_layout, null),
@@ -89,23 +97,66 @@ class RightFragment : Fragment() {
                 customContainer.addView(customView)
 
                 // Setup the birthDatePickerButton if it exists in the current customView
-                val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
-                birthDatePickerButton?.setOnClickListener {
-                    // Show DatePickerDialog and update birthDatePickerButton's text with the selected date
-                    showDatePickerDialog(birthDatePickerButton) // Use the updated method that takes a Button
-                }
+                setupDatePickerButton(customView)
+
+                // Setup radio buttons and track selections
+                setupRadioButtons(customView)
 
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
-                val helloTextView = customView.findViewById<TextView>(R.id.generatedContent) // Updated to use the correct TextView ID
+                val helloTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
-                    // Use TextGenerator to get the display text, passing 'requireContext()' as the context
-                    val displayText = textGenerator.generateTextFromLayout(customView, requireContext())
+                    val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
                     helloTextView?.visibility = View.VISIBLE
-                    helloTextView?.text = displayText // Set the generated text
+                    helloTextView?.text = displayText
                 }
             }
         }
     }
+
+    private fun setupDatePickerButton(customView: View) {
+        val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
+        birthDatePickerButton?.setOnClickListener {
+            showDatePickerDialog(birthDatePickerButton)
+        }
+    }
+
+    private fun setupRadioButtons(view: View) {
+        val radioGroupIds = listOf(
+            R.id.radioGroup1, R.id.radioGroup2, R.id.radioGroup3, R.id.radioGroup4,
+            R.id.radioGroup5, R.id.radioGroup6, R.id.radioGroup7, R.id.radioGroup8, R.id.radioGroup9
+            // Add other RadioGroup IDs as needed
+        )
+
+        val tableLayoutsIds = mapOf(
+            R.id.radioGroup1 to R.id.name_form_table,
+            R.id.radioGroup2 to R.id.address_form_table,
+            R.id.radioGroup3 to R.id.accounts_form_table,
+            R.id.radioGroup4 to R.id.inquiries_form_table,
+            R.id.radioGroup5 to R.id.records_form_table
+            // Map other RadioGroups to their corresponding TableLayouts, if any
+        )
+
+        radioGroupIds.forEach { radioGroupId ->
+            val radioGroup = view.findViewById<RadioGroup>(radioGroupId)
+            radioGroup?.setOnCheckedChangeListener { group, checkedId ->
+                val radioButton = group.findViewById<RadioButton>(checkedId)
+                val selection = radioButton.text.toString()
+                radioSelections[group.id] = selection
+
+                // Log to debug
+                Log.d("RadioSelection", "Group ${group.id} selection: $selection")
+
+                // Update visibility for mapped TableLayouts, if any
+                tableLayoutsIds[radioGroupId]?.let { tableLayoutId ->
+                    val tableLayout = view.findViewById<TableLayout>(tableLayoutId)
+                    tableLayout?.visibility = if (selection == "Yes") View.VISIBLE else View.GONE
+                }
+            }
+        }
+    }
+
+
+
 
     private fun showDatePickerDialog(button: Button) {
         val calendar = Calendar.getInstance()
@@ -178,4 +229,3 @@ class RightFragment : Fragment() {
         }
     }
 }
-

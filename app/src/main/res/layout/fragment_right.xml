@@ -46,7 +46,7 @@
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Experian"
+                        android:text="Equifax"
                         android:enabled="false" />
 
                     <com.google.android.material.button.MaterialButton
@@ -54,7 +54,7 @@
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Equifax"
+                        android:text="Experian"
                         android:enabled="false" />
 
                     <com.google.android.material.button.MaterialButton

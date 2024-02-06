@@ -11,7 +11,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class TextGenerator {
-    fun generateTextFromLayout(customView: View, context: Context): String {
+    fun generateTextFromLayout(customView: View, context: Context, radioSelections: Map<Int, String>): String {
         val stringBuilder = StringBuilder()
 
         // Example of handling different data entry methods
@@ -90,6 +90,12 @@ class TextGenerator {
         val letterGenerator = LetterGenerator(context)
         val randomizedLetterContent = letterGenerator.generateRandomizedLetter()
         stringBuilder.append(randomizedLetterContent)
+
+        // Example of appending radio button selections to the generated text
+        radioSelections.forEach { (radioGroupId, selection) ->
+            val radioGroupResourceName = context.resources.getResourceEntryName(radioGroupId)
+            stringBuilder.append("$radioGroupResourceName: $selection\n\n")
+        }
 
         // Add more checks for other input types if needed
         // For example, you could check for RadioButtons, Spinners, etc.
