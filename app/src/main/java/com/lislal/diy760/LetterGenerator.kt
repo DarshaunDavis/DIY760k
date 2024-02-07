@@ -21,17 +21,11 @@ class LetterGenerator(private val context: Context, private val radioSelections:
         // StringBuilder to build the final letter text
         val stringBuilder = StringBuilder()
 
-        // Sections that are always included regardless of radio selections
-        val defaultSectionIds = listOf(
-            R.array.section1_versions,
-            R.array.section10_versions
-        )
-
-        // Append default sections first
-        defaultSectionIds.forEach { sectionId ->
-            val randomVersion = getRandomSectionVersion(sectionId)
-            stringBuilder.append("$randomVersion\n\n")
-        }
+        // Section that is always included first
+        val section1Id = R.array.section1_versions
+        // Append section1 first
+        val section1Version = getRandomSectionVersion(section1Id)
+        stringBuilder.append("$section1Version\n\n")
 
         // Conditional sections based on radio selections
         val conditionalSectionMap = mapOf(
@@ -55,6 +49,12 @@ class LetterGenerator(private val context: Context, private val radioSelections:
                 stringBuilder.append("$randomVersion\n\n")
             }
         }
+
+        // Section that is always included last
+        val section10Id = R.array.section10_versions
+        // Append section10 last
+        val section10Version = getRandomSectionVersion(section10Id)
+        stringBuilder.append("$section10Version\n\n")
 
         // Return the final letter text as a string
         return stringBuilder.toString()

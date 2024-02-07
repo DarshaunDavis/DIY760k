@@ -35,8 +35,6 @@ class RightFragment : Fragment() {
 
         // Initialization and setup calls...
         setupRadioButtons(view) // Setup radio buttons and track selections
-
-
         val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
 
         // Dynamically find button IDs and initialize buttons
@@ -103,11 +101,11 @@ class RightFragment : Fragment() {
                 setupRadioButtons(customView)
 
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
-                val helloTextView = customView.findViewById<TextView>(R.id.generatedContent)
+                val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
                     val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
-                    helloTextView?.visibility = View.VISIBLE
-                    helloTextView?.text = displayText
+                    letterTextView?.visibility = View.VISIBLE
+                    letterTextView?.text = displayText
                 }
             }
         }
@@ -146,9 +144,6 @@ class RightFragment : Fragment() {
                     val selection = radioButton.text.toString()
                     radioSelections[group.id] = selection
 
-                    // Log to debug
-                    Log.d("RadioSelection", "Group ${group.id} selection: $selection")
-
                     // Update visibility for mapped TableLayouts, if any
                     tableLayoutsIds[radioGroupId]?.let { tableLayoutId ->
                         val tableLayout = view.findViewById<TableLayout>(tableLayoutId)
@@ -159,8 +154,6 @@ class RightFragment : Fragment() {
             }
         }
     }
-
-
 
     private fun showDatePickerDialog(button: Button) {
         val calendar = Calendar.getInstance()

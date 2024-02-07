@@ -84,18 +84,13 @@ class TextGenerator {
                 Locale.getDefault()
             ) else it.toString()
         }
+
         stringBuilder.append("Dear $formattedCompanyName,\n\n")
 
         // Instantiate LetterGenerator and append its output to stringBuilder
         val letterGenerator = LetterGenerator(context, radioSelections) // Pass radioSelections here
         val randomizedLetterContent = letterGenerator.generateRandomizedLetter()
         stringBuilder.append(randomizedLetterContent)
-
-        // Example of appending radio button selections to the generated text
-        radioSelections.forEach { (radioGroupId, selection) ->
-            val radioGroupResourceName = context.resources.getResourceEntryName(radioGroupId)
-            stringBuilder.append("$radioGroupResourceName: $selection\n\n")
-        }
 
         // Add more checks for other input types if needed
         // For example, you could check for RadioButtons, Spinners, etc.
@@ -116,6 +111,4 @@ class TextGenerator {
         // Find the address that starts with the key word
         return addresses.firstOrNull { it.startsWith(keyWord, ignoreCase = true) } ?: ""
     }
-
-
 }
