@@ -87,7 +87,7 @@ class TextGenerator {
         stringBuilder.append("Dear $formattedCompanyName,\n\n")
 
         // Instantiate LetterGenerator and append its output to stringBuilder
-        val letterGenerator = LetterGenerator(context)
+        val letterGenerator = LetterGenerator(context, radioSelections) // Pass radioSelections here
         val randomizedLetterContent = letterGenerator.generateRandomizedLetter()
         stringBuilder.append(randomizedLetterContent)
 
