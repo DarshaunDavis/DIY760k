@@ -6,97 +6,201 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class TextGenerator {
-    fun generateTextFromLayout(customView: View, context: Context, radioSelections: Map<Int, String>): String {
+
+    // Function to validate input fields
+        fun validateInputFields(customView: View, context: Context): Boolean {
+            var isValid = true
+
+            // Validate firstNameEditText
+            val firstNameEditText = customView.findViewById<EditText>(R.id.firstNameEditText)
+            if (firstNameEditText.text.toString().trim().isEmpty()) {
+                firstNameEditText.error = "First name is required."
+                isValid = false
+            }
+
+        // Validate lastNameEditText
+        val lastNameEditText = customView.findViewById<EditText>(R.id.lastNameEditText)
+        if (lastNameEditText.text.toString().trim().isEmpty()) {
+            lastNameEditText.error = "Last name is required."
+            isValid = false
+        }
+
+        // Validate addressNameEditText
+        val addressEditText = customView.findViewById<EditText>(R.id.addressEditText)
+        if (addressEditText.text.toString().trim().isEmpty()) {
+            addressEditText.error = "Address is required."
+            isValid = false
+        }
+
+        // Validate cityNameEditText
+        val cityEditText = customView.findViewById<EditText>(R.id.cityEditText)
+        if (cityEditText.text.toString().trim().isEmpty()) {
+            cityEditText.error = "City is required."
+            isValid = false
+        }
+
+        // Validate stateNameEditText
+        val stateEditText = customView.findViewById<EditText>(R.id.stateEditText)
+        if (stateEditText.text.toString().trim().isEmpty()) {
+            stateEditText.error = "State is required."
+            isValid = false
+        }
+        if (stateEditText.text.toString().trim().length != 2) {
+            stateEditText.error = "State must be exactly 2 characters."
+            isValid = false
+        }
+
+        // Validate zipNameEditText
+        val zipEditText = customView.findViewById<EditText>(R.id.zipEditText)
+        if (zipEditText.text.toString().trim().isEmpty()) {
+            zipEditText.error = "Zip Code is required."
+            isValid = false
+        }
+        if (zipEditText.text.toString().trim().length != 5) {
+            zipEditText.error = "Zip code must be exactly 5 characters."
+            isValid = false
+        }
+
+        // Validate birthDatePickerButton specifically for the default text
+        val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
+        val birthDateButtonText = birthDatePickerButton.text.toString().trim()
+
+        // Check if the button text is the default "Select Birthdate" or empty
+        if (birthDateButtonText == "Select Birthdate" || birthDateButtonText.isEmpty()) {
+            // Setting error directly on a Button is not possible, so consider alternatives:
+            // 1. Use a Toast message (as shown before)
+            // 2. Use an associated TextView to show the error message
+            // 3. Change the button's appearance to indicate an error (e.g., change text color)
+
+            // Example using a Toast message:
+            Toast.makeText(context, "Please select a birthdate.", Toast.LENGTH_LONG).show()
+            isValid = false
+        }
+
+        // Validate socialNameEditText
+        val socialEditText = customView.findViewById<EditText>(R.id.socialEditText)
+        if (socialEditText.text.toString().trim().isEmpty()) {
+            socialEditText.error = "Last 4 of social is required."
+            isValid = false
+        }
+        if (socialEditText.text.toString().trim().length != 4) {
+            socialEditText.error = "Social must be exactly 4 characters."
+            isValid = false
+        }
+
+            // Add similar validations for other required fields...
+
+            // Optionally, show a general message if any validation fails
+            if (!isValid) {
+                Toast.makeText(context, "Please fill out all required fields.", Toast.LENGTH_LONG).show()
+            }
+
+            return isValid
+        }
+
+    // Function to generate text from layout
+    fun generateTextFromLayout(customView: View, context: Context, radioSelections: Map<Int, String>): String? {
+        // First, validate the input fields
+        if (!validateInputFields(customView, context)) {
+            return null // Return null or handle validation failure as needed
+        }
+
+        // Proceed with text generation if validation passes
         val stringBuilder = StringBuilder()
 
-        // Example of handling different data entry methods
+        // Check if the EditText is not empty before appending
         customView.findViewById<EditText>(R.id.firstNameEditText)?.let {
-            val firstName = it.text.toString()
-            stringBuilder.append("$firstName ")
+            val firstName = it.text.toString().trim()
+            if (firstName.isNotEmpty()) {
+                stringBuilder.append("$firstName ")
+            }
         }
 
         customView.findViewById<EditText>(R.id.lastNameEditText)?.let {
-            val lastName = it.text.toString()
-            stringBuilder.append("$lastName\n")
+            val lastName = it.text.toString().trim()
+            if (lastName.isNotEmpty()) {
+                stringBuilder.append("$lastName\n")
+            }
         }
 
         customView.findViewById<EditText>(R.id.addressEditText)?.let {
-            val address = it.text.toString()
-            stringBuilder.append("$address ")
+            val address = it.text.toString().trim()
+            if (address.isNotEmpty()) {
+                stringBuilder.append("$address ")
+            }
         }
 
         customView.findViewById<EditText>(R.id.apartmentEditText)?.let {
-            val apartment = it.text.toString()
-            stringBuilder.append("$apartment\n")
+            val apartment = it.text.toString().trim()
+            if (apartment.isNotEmpty()) {
+                stringBuilder.append("$apartment\n")
+            }
         }
 
         customView.findViewById<EditText>(R.id.cityEditText)?.let {
-            val city = it.text.toString()
-            stringBuilder.append("$city, ")
+            val city = it.text.toString().trim()
+            if (city.isNotEmpty()) {
+                stringBuilder.append("$city, ")
+            }
         }
 
         customView.findViewById<EditText>(R.id.stateEditText)?.let {
-            val state = it.text.toString()
-            stringBuilder.append("$state ")
+            val state = it.text.toString().trim()
+            if (state.isNotEmpty()) {
+                stringBuilder.append("$state ")
+            }
         }
 
         customView.findViewById<EditText>(R.id.zipEditText)?.let {
-            val zipCode = it.text.toString()
-            stringBuilder.append("$zipCode\n")
+            val zipCode = it.text.toString().trim()
+            if (zipCode.isNotEmpty()) {
+                stringBuilder.append("$zipCode\n")
+            }
         }
 
-        // Assuming the birthDatePickerButton's text is set to the selected birthdate
+        // Handling the birthDatePickerButton with a check for non-default text
         customView.findViewById<Button>(R.id.birthDatePickerButton)?.let {
-            val birthDate = it.text.toString()
-            // Only append if birthDate is not the initial text like "Select birthdate"
-            if (birthDate.isNotEmpty() && birthDate != "Select birthdate") { // Replace "Select birthdate" with the initial text of your button if different
+            val birthDate = it.text.toString().trim()
+            if (birthDate.isNotEmpty() && birthDate != "Select birthdate") {
                 stringBuilder.append("Birthdate: $birthDate\n")
             }
         }
 
         customView.findViewById<EditText>(R.id.socialEditText)?.let {
-            val social = it.text.toString()
-            stringBuilder.append("SS#: ***-**-$social\n\n\n")
+            val social = it.text.toString().trim()
+            if (social.isNotEmpty()) {
+                stringBuilder.append("SS#: ***-**-$social\n\n\n")
+            }
         }
+
+        // Append text from various fields as previously described
+        // This part remains largely unchanged, focusing purely on text generation
 
         val currentDate = getCurrentDate()
         stringBuilder.append("Date: $currentDate\n")
 
-        // New code to add the address based on title
         val titleView = customView.findViewById<TextView>(R.id.headerTextView)
-        titleView?.let {
-            val title = it.text.toString()
-            val addresses = getAddressForTitle(context, title)
-            if (addresses.isNotEmpty()) {
-                stringBuilder.append("\n$addresses\n\n")
+        titleView?.text.toString().split(" ").getOrNull(0)?.trim()?.let { companyName ->
+            val formattedCompanyName = companyName.replaceFirstChar {
+                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             }
+            stringBuilder.append("Dear $formattedCompanyName,\n\n")
         }
-
-        // Assuming the layout name is similar to the title and you can extract the first word
-        val companyName = titleView?.text.toString().split(" ")[0] // Extract the first word
-        val formattedCompanyName = companyName.replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(
-                Locale.getDefault()
-            ) else it.toString()
-        }
-
-        stringBuilder.append("Dear $formattedCompanyName,\n\n")
 
         // Instantiate LetterGenerator and append its output to stringBuilder
-        val letterGenerator = LetterGenerator(context, radioSelections) // Pass radioSelections here
+        val letterGenerator = LetterGenerator(context, radioSelections)
         val randomizedLetterContent = letterGenerator.generateRandomizedLetter()
         stringBuilder.append(randomizedLetterContent)
 
-        // Add more checks for other input types if needed
-        // For example, you could check for RadioButtons, Spinners, etc.
-
         return stringBuilder.toString()
     }
+
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
@@ -106,9 +210,7 @@ class TextGenerator {
 
     private fun getAddressForTitle(context: Context, title: String): String {
         val addresses = context.resources.getStringArray(R.array.company_addresses)
-        // Assuming the title format is "Experian Step 1 Letter", split by space and get the first word
         val keyWord = title.split(" ").firstOrNull() ?: return ""
-        // Find the address that starts with the key word
         return addresses.firstOrNull { it.startsWith(keyWord, ignoreCase = true) } ?: ""
     }
 }
