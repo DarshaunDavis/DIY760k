@@ -7,15 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import java.util.Calendar
@@ -83,12 +82,12 @@ class RightFragment : Fragment() {
     private fun setupButtonActions(
         buttonActions: Map<Int, ButtonAction>,
         buttons: List<Button>,
-        customContainer: FrameLayout
+        customContainer: FrameLayout,
     ) {
         val textGenerator = TextGenerator() // Assuming TextGenerator is properly implemented
 
         buttonActions.forEach { (index, action) ->
-            buttons[index - 1].setOnClickListener { // Adjusted index to match the button list (if needed)
+            buttons[index].setOnClickListener { // Adjusted index to match the button list (if needed)
                 customContainer.visibility = View.VISIBLE
                 customContainer.removeAllViews()
                 val customView = LayoutInflater.from(requireContext()).inflate(action.layoutResId, customContainer, false)
@@ -96,6 +95,11 @@ class RightFragment : Fragment() {
 
                 // Immediate Initialization Logic Here
                 // For example, setup DatePicker, RadioButtons, and default values
+                // Now use 'rootView' instead of 'view' for setupStateSpinner
+                if (customView.findViewById<Spinner>(R.id.stateSpinner) != null) {
+                    // Correct context and view passed here
+                    textGenerator.setupStateSpinner(customView, requireContext())
+                }
                 setupDatePickerButton(customView)
                 setupRadioButtons(customView)
                 initializeCustomView(customView) // Implement this based on your custom view's needs

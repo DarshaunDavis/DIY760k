@@ -5,8 +5,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import java.text.SimpleDateFormat
@@ -44,17 +46,6 @@ class TextGenerator {
         val cityEditText = customView.findViewById<EditText>(R.id.cityEditText)
         if (cityEditText.text.toString().trim().isEmpty()) {
             cityEditText.error = "City is required."
-            isValid = false
-        }
-
-        // Validate stateNameEditText
-        val stateEditText = customView.findViewById<EditText>(R.id.stateEditText)
-        if (stateEditText.text.toString().trim().isEmpty()) {
-            stateEditText.error = "State is required."
-            isValid = false
-        }
-        if (stateEditText.text.toString().trim().length != 2) {
-            stateEditText.error = "State must be exactly 2 characters."
             isValid = false
         }
 
@@ -107,6 +98,22 @@ class TextGenerator {
         return isValid
     }
 
+    fun setupStateSpinner(customView: View, context: Context) {
+        val spinner = customView.findViewById<Spinner>(R.id.stateSpinner)
+        if (spinner != null) {
+            ArrayAdapter.createFromResource(
+                context,
+                R.array.us_states,
+                android.R.layout.simple_spinner_item
+            ).also { adapter ->
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+            }
+        } else {
+            Log.d("TextGenerator", "Spinner not found in the current view.")
+        }
+    }
+
     // Function to add real-time validation listeners
     private fun addValidationListeners(customView: View) {
         val editTextIds = listOf(
@@ -114,7 +121,7 @@ class TextGenerator {
             R.id.lastNameEditText,
             R.id.addressEditText,
             R.id.cityEditText,
-            R.id.stateEditText,
+            //R.id.stateEditText,
             R.id.zipEditText,
             R.id.socialEditText
             // Add other EditText IDs as needed
@@ -166,30 +173,26 @@ class TextGenerator {
 
         customView.findViewById<EditText>(R.id.addressEditText)?.let {
             val address = it.text.toString().trim()
-            if (address.isNotEmpty()) {
                 stringBuilder.append("$address ")
-            }
         }
 
         customView.findViewById<EditText>(R.id.apartmentEditText)?.let {
             val apartment = it.text.toString().trim()
             if (apartment.isNotEmpty()) {
-                stringBuilder.append("$apartment\n")
+                stringBuilder.append("$apartment")
             }
         }
 
         customView.findViewById<EditText>(R.id.cityEditText)?.let {
             val city = it.text.toString().trim()
             if (city.isNotEmpty()) {
-                stringBuilder.append("$city, ")
+                stringBuilder.append("\n$city, ")
             }
         }
 
-        customView.findViewById<EditText>(R.id.stateEditText)?.let {
-            val state = it.text.toString().trim()
-            if (state.isNotEmpty()) {
+        customView.findViewById<Spinner>(R.id.stateSpinner)?.let {
+            val state = it.selectedItem.toString()
                 stringBuilder.append("$state ")
-            }
         }
 
         customView.findViewById<EditText>(R.id.zipEditText)?.let {
