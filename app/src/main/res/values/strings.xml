@@ -49,6 +49,58 @@
     <string name="sagestream_dispute_letter">SageStream Dispute Letter</string>
     <string name="copy_of_your_credit_report">Do you want a Free copy of your credit report?</string>
 
+    <string-array name="us_states">
+        <item>AL</item> <!-- Alabama -->
+        <item>AK</item> <!-- Alaska -->
+        <item>AR</item> <!-- Arkansas -->
+        <item>AZ</item> <!-- Arizona -->
+        <item>CA</item> <!-- California -->
+        <item>CO</item> <!-- Colorado -->
+        <item>CT</item> <!-- Connecticut -->
+        <item>DE</item> <!-- Delaware -->
+        <item>FL</item> <!-- Florida -->
+        <item>GA</item> <!-- Georgia -->
+        <item>HI</item> <!-- Hawaii -->
+        <item>IA</item> <!-- Iowa -->
+        <item>ID</item> <!-- Idaho -->
+        <item>IL</item> <!-- Illinois -->
+        <item>IN</item> <!-- Indiana -->
+        <item>KY</item> <!-- Kentucky -->
+        <item>KS</item> <!-- Kansas -->
+        <item>LA</item> <!-- Louisiana -->
+        <item>MA</item> <!-- Massachusetts -->
+        <item>MD</item> <!-- Maryland -->
+        <item>ME</item> <!-- Maine -->
+        <item>MI</item> <!-- Michigan -->
+        <item>MN</item> <!-- Minnesota -->
+        <item>MO</item> <!-- Missouri -->
+        <item>MS</item> <!-- Mississippi -->
+        <item>MT</item> <!-- Montana -->
+        <item>NC</item> <!-- North Carolina -->
+        <item>ND</item> <!-- North Dakota -->
+        <item>NE</item> <!-- Nebraska -->
+        <item>NH</item> <!-- New Hampshire -->
+        <item>NJ</item> <!-- New Jersey -->
+        <item>NM</item> <!-- New Mexico -->
+        <item>NV</item> <!-- Nevada -->
+        <item>NY</item> <!-- New York -->
+        <item>OH</item> <!-- Ohio -->
+        <item>OK</item> <!-- Oklahoma -->
+        <item>OR</item> <!-- Oregon -->
+        <item>RI</item> <!-- Rhode Island -->
+        <item>PA</item> <!-- Pennsylvania -->
+        <item>TN</item> <!-- Tennessee -->
+        <item>UT</item> <!-- Utah -->
+        <item>VA</item> <!-- Virginia -->
+        <item>VT</item> <!-- Vermont-->
+        <item>SC</item> <!-- South Carolina -->
+        <item>SD</item> <!-- South Dakota -->
+        <item>TX</item> <!-- Texas -->
+        <item>WA</item> <!-- Washington -->
+        <item>WI</item> <!-- Wisconsin -->
+        <item>WV</item> <!-- West Virgina -->
+        <item>WY</item> <!-- Wyoming -->
+    </string-array>
 
     <string name="experian_title">Experian</string>
     <string name="equifax_title">Equifax</string>
@@ -81,8 +133,7 @@
     </string-array>
 
     <string-array name="section1_versions">
-        <item>I got a credit report, but it has mistakes. I need your help to fix it right away, because some important rules say we should.
-    </item>
+        <item>I got a credit report, but it has mistakes. I need your help to fix it right away, because some important rules say we should.</item>
         <item>I looked at my credit report, and I found some mistakes in it. Please help me fix these errors quickly because the Fair Credit Reporting Act says we need to do this.</item>
         <item>I recently reviewed my credit report and discovered inaccuracies. Please address these issues promptly, as the Fair Credit Reporting Act (FCRA) requires us to do so under Sections 611 and 623.</item>
         <item>I recently obtained and reviewed my credit report, finding several inaccuracies that need your immediate attention. Please rectify these issues in accordance with the Fair Credit Reporting Act (FCRA) Sections 611 and 623.</item>
@@ -252,6 +303,17 @@
         <item>Enclosed, please find the subsequent documents:</item>
         <item>Kindly find the ensuing documents attached herewith:</item>
         <item>Attached please find the following documents:</item>
+    </string-array>
+
+    <string-array name="section12_versions">
+        <item>I am writing to tell you about my credit report. I need to talk to you about it.</item>
+        <item>I wanted to let you know about my credit report. I have something important to discuss with you.</item>
+        <item>I\'m reaching out to discuss my credit report with you. There are some things I need to address.</item>
+        <item>I am contacting you regarding my credit report. I have important matters to discuss regarding its accuracy.</item>
+        <item>I am writing to you concerning my credit report. There are significant issues I need to bring to your attention.</item>
+        <item>I am reaching out to discuss my credit report with you. It\'s imperative that we address certain matters promptly.</item>
+        <item>I am contacting you regarding my credit report. It is essential that we discuss some critical issues without delay.</item>
+        <item>Pursuant to ongoing matters, I am correspondingly addressing my credit report with you. It is imperative to discuss crucial issues with expediency.</item>
     </string-array>
 
 </resources>
