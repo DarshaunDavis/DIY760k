@@ -1,6 +1,8 @@
 package com.lislal.diy760
 
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -14,15 +16,15 @@ import java.util.Locale
 class TextGenerator {
 
     // Function to validate input fields
-        fun validateInputFields(customView: View, context: Context): Boolean {
-            var isValid = true
+    fun validateInputFields(customView: View, context: Context): Boolean {
+        var isValid = true
 
-            // Validate firstNameEditText
-            val firstNameEditText = customView.findViewById<EditText>(R.id.firstNameEditText)
-            if (firstNameEditText.text.toString().trim().isEmpty()) {
-                firstNameEditText.error = "First name is required."
-                isValid = false
-            }
+        // Validate firstNameEditText
+        val firstNameEditText = customView.findViewById<EditText>(R.id.firstNameEditText)
+        if (firstNameEditText.text.toString().trim().isEmpty()) {
+            firstNameEditText.error = "First name is required."
+            isValid = false
+        }
 
         // Validate lastNameEditText
         val lastNameEditText = customView.findViewById<EditText>(R.id.lastNameEditText)
@@ -94,18 +96,51 @@ class TextGenerator {
             isValid = false
         }
 
-            // Add similar validations for other required fields...
+        // Add similar validations for other required fields...
 
-            // Optionally, show a general message if any validation fails
-            if (!isValid) {
-                Toast.makeText(context, "Please fill out all required fields.", Toast.LENGTH_LONG).show()
-            }
-
-            return isValid
+        // Optionally, show a general message if any validation fails
+        if (!isValid) {
+            Toast.makeText(context, "Please fill out all required fields.", Toast.LENGTH_LONG)
+                .show()
         }
 
+        return isValid
+    }
+
+    // Function to add real-time validation listeners
+    private fun addValidationListeners(customView: View) {
+        val editTextIds = listOf(
+            R.id.firstNameEditText,
+            R.id.lastNameEditText,
+            R.id.addressEditText,
+            R.id.cityEditText,
+            R.id.stateEditText,
+            R.id.zipEditText,
+            R.id.socialEditText
+            // Add other EditText IDs as needed
+        )
+
+        editTextIds.forEach { editTextId ->
+            val editText = customView.findViewById<EditText>(editTextId)
+            editText.addTextChangedListener(object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Optionally re-validate the specific field or simply clear the error
+                    editText.error = null
+                }
+            })
+        }
+    }
+
     // Function to generate text from layout
-    fun generateTextFromLayout(customView: View, context: Context, radioSelections: Map<Int, String>): String? {
+    fun generateTextFromLayout(
+        customView: View,
+        context: Context,
+        radioSelections: Map<Int, String>
+    ): String? {
         // First, validate the input fields
         if (!validateInputFields(customView, context)) {
             return null // Return null or handle validation failure as needed
@@ -182,16 +217,28 @@ class TextGenerator {
         // Append text from various fields as previously described
         // This part remains largely unchanged, focusing purely on text generation
 
+        // Append the current date first
         val currentDate = getCurrentDate()
-        stringBuilder.append("Date: $currentDate\n")
+        stringBuilder.append("Date: $currentDate\n\n")
 
+// Fetch the company name and use it to retrieve the associated address
         val titleView = customView.findViewById<TextView>(R.id.headerTextView)
         titleView?.text.toString().split(" ").getOrNull(0)?.trim()?.let { companyName ->
             val formattedCompanyName = companyName.replaceFirstChar {
                 if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
             }
+
+            // Use the companyName to fetch the associated address
+            val addressForCompanyName = getAddressForTitle(context, companyName)
+            if (addressForCompanyName.isNotEmpty()) {
+                // Append the address below the date
+                stringBuilder.append("$addressForCompanyName\n\n")
+            }
+
+            // Append the greeting with the company name last
             stringBuilder.append("Dear $formattedCompanyName,\n\n")
         }
+
 
         // Instantiate LetterGenerator and append its output to stringBuilder
         val letterGenerator = LetterGenerator(context, radioSelections)
@@ -200,7 +247,6 @@ class TextGenerator {
 
         return stringBuilder.toString()
     }
-
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()

@@ -85,37 +85,45 @@ class RightFragment : Fragment() {
         buttons: List<Button>,
         customContainer: FrameLayout
     ) {
-        val textGenerator = TextGenerator() // Create an instance of TextGenerator
+        val textGenerator = TextGenerator() // Assuming TextGenerator is properly implemented
 
         buttonActions.forEach { (index, action) ->
-            buttons[index].setOnClickListener {
+            buttons[index - 1].setOnClickListener { // Adjusted index to match the button list (if needed)
                 customContainer.visibility = View.VISIBLE
-
                 customContainer.removeAllViews()
                 val customView = LayoutInflater.from(requireContext()).inflate(action.layoutResId, customContainer, false)
                 customContainer.addView(customView)
 
-                // Setup the birthDatePickerButton if it exists in the current customView
+                // Immediate Initialization Logic Here
+                // For example, setup DatePicker, RadioButtons, and default values
                 setupDatePickerButton(customView)
-
-                // Setup radio buttons and track selections
                 setupRadioButtons(customView)
+                initializeCustomView(customView) // Implement this based on your custom view's needs
 
+                // Setup generateButton and letterTextView logic
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
                     if (areAllRadioGroupsValidated(customView)) {
-                        // All RadioGroups have been properly selected, proceed with action
                         val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
-                    letterTextView?.visibility = View.VISIBLE
-                    letterTextView?.text = displayText
+                        letterTextView?.visibility = View.VISIBLE
+                        letterTextView?.text = displayText
                     } else {
-                        // Not all RadioGroups have a valid selection, alert the user
                         Toast.makeText(requireContext(), "Please make a selection for all questions.", Toast.LENGTH_LONG).show()
                     }
                 }
             }
         }
+    }
+
+    private fun initializeCustomView(customView: View) {
+        // Example of setting default values or performing additional setup
+        // This should be customized based on what each custom layout needs
+        // For example, setting up additional listeners, default data, etc.
+
+        // Example: If your custom layout has specific fields that need default values
+
+        // More initialization logic as needed for each custom layout
     }
 
     private fun setupDatePickerButton(customView: View) {
