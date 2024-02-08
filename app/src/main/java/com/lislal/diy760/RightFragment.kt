@@ -14,6 +14,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TableLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContentProviderCompat
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
@@ -54,7 +55,7 @@ class RightFragment : Fragment() {
         )
 
         val buttonActions = mapOf(
-            1 to ButtonAction(R.layout.equifax_step_1_letter_layout, 2),
+            1 to ButtonAction(R.layout.custom_layout, 2),
             2 to ButtonAction(R.layout.experian_step_1_letter_layout, null),
             3 to ButtonAction(R.layout.transunion_step_1_letter_layout, null),
             4 to ButtonAction(R.layout.sagestream_step_1_letter_layout, null),
@@ -103,9 +104,15 @@ class RightFragment : Fragment() {
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
-                    val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
+                    if (areAllRadioGroupsValidated(customView)) {
+                        // All RadioGroups have been properly selected, proceed with action
+                        val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
                     letterTextView?.visibility = View.VISIBLE
                     letterTextView?.text = displayText
+                    } else {
+                        // Not all RadioGroups have a valid selection, alert the user
+                        Toast.makeText(requireContext(), "Please make a selection for all questions.", Toast.LENGTH_LONG).show()
+                    }
                 }
             }
         }
@@ -225,4 +232,25 @@ class RightFragment : Fragment() {
             buttons[9].text = "Step 2 - Update Personal Information" // Assuming buttons[8] is button9
         }
     }
+
+    private fun areAllRadioGroupsValidated(customView: View): Boolean {
+        val radioGroupIds = listOf(
+            R.id.radioGroup1, R.id.radioGroup2, R.id.radioGroup3,
+            R.id.radioGroup4, R.id.radioGroup5, R.id.radioGroup6,
+            R.id.radioGroup7, R.id.radioGroup8, R.id.radioGroup9
+            // Add other RadioGroup IDs as needed
+        )
+
+        radioGroupIds.forEach { radioGroupId ->
+            customView.findViewById<RadioGroup>(radioGroupId)?.let { radioGroup ->
+                val selection = radioSelections[radioGroupId]
+                if (selection == null || !(selection == "Yes" || selection == "No")) {
+                    // Selection for a visible RadioGroup is missing or invalid
+                    return false
+                }
+            }
+        }
+        return true
+    }
+
 }
