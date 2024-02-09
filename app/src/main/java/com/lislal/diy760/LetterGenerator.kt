@@ -17,7 +17,7 @@ class LetterGenerator(private val context: Context, private val radioSelections:
     }
 
     // Public function to generate the letter with randomized content
-    fun generateRandomizedLetter(): String {
+    fun generateRandomizedLetter(firstName: String = "", lastName: String = ""): String {
         // StringBuilder to build the final letter text
         val stringBuilder = StringBuilder()
 
@@ -54,7 +54,12 @@ class LetterGenerator(private val context: Context, private val radioSelections:
         val section10Id = R.array.section10_versions
         // Append section10 last
         val section10Version = getRandomSectionVersion(section10Id)
-        stringBuilder.append("$section10Version\n\n")
+        val personalizedClosing = if (firstName.isNotEmpty() || lastName.isNotEmpty()) {
+            "$section10Version\n\n$firstName $lastName"
+        } else {
+            section10Version
+        }
+        stringBuilder.append("$personalizedClosing\n\n")
 
         // Return the final letter text as a string
         return stringBuilder.toString()

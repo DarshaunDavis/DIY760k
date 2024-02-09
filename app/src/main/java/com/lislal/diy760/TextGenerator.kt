@@ -153,100 +153,32 @@ class TextGenerator {
             return null // Return null or handle validation failure as needed
         }
 
+        // Retrieve the first name and last name from EditText fields
+        val firstName = customView.findViewById<EditText>(R.id.firstNameEditText)?.text.toString().trim()
+        val lastName = customView.findViewById<EditText>(R.id.lastNameEditText)?.text.toString().trim()
+
         // Proceed with text generation if validation passes
         val stringBuilder = StringBuilder()
-
-        // Check if the EditText is not empty before appending
-        customView.findViewById<EditText>(R.id.firstNameEditText)?.let {
-            val firstName = it.text.toString().trim()
-            if (firstName.isNotEmpty()) {
-                stringBuilder.append("$firstName ")
-            }
-        }
-
-        customView.findViewById<EditText>(R.id.lastNameEditText)?.let {
-            val lastName = it.text.toString().trim()
-            if (lastName.isNotEmpty()) {
-                stringBuilder.append("$lastName\n")
-            }
-        }
-
-        customView.findViewById<EditText>(R.id.addressEditText)?.let {
-            val address = it.text.toString().trim()
-                stringBuilder.append("$address ")
-        }
-
-        customView.findViewById<EditText>(R.id.apartmentEditText)?.let {
-            val apartment = it.text.toString().trim()
-            if (apartment.isNotEmpty()) {
-                stringBuilder.append("$apartment")
-            }
-        }
-
-        customView.findViewById<EditText>(R.id.cityEditText)?.let {
-            val city = it.text.toString().trim()
-            if (city.isNotEmpty()) {
-                stringBuilder.append("\n$city, ")
-            }
-        }
-
-        customView.findViewById<Spinner>(R.id.stateSpinner)?.let {
-            val state = it.selectedItem.toString()
-                stringBuilder.append("$state ")
-        }
-
-        customView.findViewById<EditText>(R.id.zipEditText)?.let {
-            val zipCode = it.text.toString().trim()
-            if (zipCode.isNotEmpty()) {
-                stringBuilder.append("$zipCode\n")
-            }
-        }
-
-        // Handling the birthDatePickerButton with a check for non-default text
-        customView.findViewById<Button>(R.id.birthDatePickerButton)?.let {
-            val birthDate = it.text.toString().trim()
-            if (birthDate.isNotEmpty() && birthDate != "Select birthdate") {
-                stringBuilder.append("Birthdate: $birthDate\n")
-            }
-        }
-
-        customView.findViewById<EditText>(R.id.socialEditText)?.let {
-            val social = it.text.toString().trim()
-            if (social.isNotEmpty()) {
-                stringBuilder.append("SS#: ***-**-$social\n\n\n")
-            }
-        }
-
-        // Append text from various fields as previously described
-        // This part remains largely unchanged, focusing purely on text generation
 
         // Append the current date first
         val currentDate = getCurrentDate()
         stringBuilder.append("Date: $currentDate\n\n")
 
-// Fetch the company name and use it to retrieve the associated address
-        val titleView = customView.findViewById<TextView>(R.id.headerTextView)
-        titleView?.text.toString().split(" ").getOrNull(0)?.trim()?.let { companyName ->
-            val formattedCompanyName = companyName.replaceFirstChar {
-                if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString()
-            }
-
-            // Use the companyName to fetch the associated address
+        // Fetch the company name and use it to retrieve the associated address
+        val titleView = customView.findViewById<TextView>(R.id.headerTextView)?.text.toString().split(" ").getOrNull(0)?.trim()
+        titleView?.let { companyName ->
+            val formattedCompanyName = companyName.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             val addressForCompanyName = getAddressForTitle(context, companyName)
             if (addressForCompanyName.isNotEmpty()) {
-                // Append the address below the date
                 stringBuilder.append("$addressForCompanyName\n\n")
             }
-
-            // Append the greeting with the company name last
             stringBuilder.append("Dear $formattedCompanyName,\n\n")
         }
 
-
         // Instantiate LetterGenerator and append its output to stringBuilder
         val letterGenerator = LetterGenerator(context, radioSelections)
-        val randomizedLetterContent = letterGenerator.generateRandomizedLetter()
-        stringBuilder.append(randomizedLetterContent)
+        val letterContent = letterGenerator.generateRandomizedLetter(firstName, lastName)
+        stringBuilder.append(letterContent)
 
         return stringBuilder.toString()
     }
