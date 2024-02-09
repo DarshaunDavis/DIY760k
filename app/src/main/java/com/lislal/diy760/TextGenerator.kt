@@ -148,25 +148,43 @@ class TextGenerator {
         context: Context,
         radioSelections: Map<Int, String>
     ): String? {
-        // First, validate the input fields
+        // Validate input fields first
         if (!validateInputFields(customView, context)) {
-            return null // Return null or handle validation failure as needed
+            return null // Return null if validation fails
         }
 
-        // Retrieve the first name and last name from EditText fields
-        val firstName = customView.findViewById<EditText>(R.id.firstNameEditText)?.text.toString().trim()
-        val lastName = customView.findViewById<EditText>(R.id.lastNameEditText)?.text.toString().trim()
-
-        // Proceed with text generation if validation passes
         val stringBuilder = StringBuilder()
 
-        // Append the current date first
+        // Append the current date
         val currentDate = getCurrentDate()
         stringBuilder.append("Date: $currentDate\n\n")
 
-        // Fetch the company name and use it to retrieve the associated address
-        val titleView = customView.findViewById<TextView>(R.id.headerTextView)?.text.toString().split(" ").getOrNull(0)?.trim()
-        titleView?.let { companyName ->
+        // Append user details
+        val firstName = customView.findViewById<EditText>(R.id.firstNameEditText)?.text.toString().trim()
+        val lastName = customView.findViewById<EditText>(R.id.lastNameEditText)?.text.toString().trim()
+        val address = customView.findViewById<EditText>(R.id.addressEditText)?.text.toString().trim()
+        val apartment = customView.findViewById<EditText>(R.id.apartmentEditText)?.text.toString().trim()
+        val city = customView.findViewById<EditText>(R.id.cityEditText)?.text.toString().trim()
+        val state = customView.findViewById<Spinner>(R.id.stateSpinner)?.selectedItem.toString()
+        val zipCode = customView.findViewById<EditText>(R.id.zipEditText)?.text.toString().trim()
+        val social = customView.findViewById<EditText>(R.id.socialEditText)?.text.toString().trim()
+        val birthDate = customView.findViewById<Button>(R.id.birthDatePickerButton)?.text.toString().trim()
+
+        // Correctly format and append user details to stringBuilder
+        stringBuilder.apply {
+            append("$firstName $lastName\n")
+            append("$address, $apartment\n")
+            append("$city, $state $zipCode\n")
+            append("Social: ***-**-$social\n")
+            if (birthDate != "Select Birthdate") {
+                append("Birthdate: $birthDate\n")
+            }
+            append("\n") // Extra newline for separation before letter content
+        }
+
+        // Fetch the company name and retrieve the associated address
+        val titleViewText = customView.findViewById<TextView>(R.id.headerTextView)?.text.toString()
+        titleViewText.split(" ").getOrNull(0)?.trim()?.let { companyName ->
             val formattedCompanyName = companyName.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
             val addressForCompanyName = getAddressForTitle(context, companyName)
             if (addressForCompanyName.isNotEmpty()) {
@@ -175,13 +193,14 @@ class TextGenerator {
             stringBuilder.append("Dear $formattedCompanyName,\n\n")
         }
 
-        // Instantiate LetterGenerator and append its output to stringBuilder
+        // Instantiate LetterGenerator and generate the letter content with names
         val letterGenerator = LetterGenerator(context, radioSelections)
         val letterContent = letterGenerator.generateRandomizedLetter(firstName, lastName)
         stringBuilder.append(letterContent)
 
         return stringBuilder.toString()
     }
+
 
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
