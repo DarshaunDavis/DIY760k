@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <!-- Add your views here -->
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="@string/build_your_dispute_letter"
+                    android:text="Experian Complete Letter"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -44,7 +44,8 @@
                     android:autofillHints="@string/first_name"
                     android:ems="10"
                     android:hint="@string/first_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/lastNameEditText" />
 
                 <EditText
@@ -55,7 +56,8 @@
                     android:autofillHints="@string/last_name"
                     android:ems="10"
                     android:hint="@string/last_name"
-                    android:inputType="textPersonName"
+                    android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/addressEditText" />
 
             </TableRow>
@@ -73,7 +75,8 @@
                     android:autofillHints="@string/address"
                     android:ems="14"
                     android:hint="@string/address"
-                    android:inputType="textPostalAddress"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/apartmentEditText" />
 
                 <EditText
@@ -84,7 +87,8 @@
                     android:autofillHints="@string/apt"
                     android:ems="4"
                     android:hint="@string/apt"
-                    android:inputType="text"
+                    android:inputType="textCapCharacters"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/cityEditText" />
 
             </TableRow>
@@ -98,35 +102,32 @@
                     android:id="@+id/cityEditText"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="3.5"
+                    android:layout_weight="2.5"
                     android:autofillHints="@string/city"
                     android:ems="10"
                     android:hint="@string/city"
-                    android:inputType="text"
-                    android:nextFocusDown="@+id/stateEditText" />
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@+id/stateSpinner" />
 
-                <EditText
-                    android:id="@+id/stateEditText"
+                <Spinner
+                    android:id="@+id/stateSpinner"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:autofillHints="@string/state"
-                    android:ems="10"
-                    android:hint="@string/state"
-                    android:inputType="textCapCharacters"
-                    android:maxLength="2"
+                    android:layout_weight="1.5"
                     android:nextFocusDown="@+id/zipEditText" />
 
                 <EditText
                     android:id="@+id/zipEditText"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1.5"
                     android:autofillHints="@string/zip_code"
                     android:ems="6"
                     android:hint="@string/zip_code"
                     android:inputType="number"
                     android:maxLength="5"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/SocialEditText" />
 
             </TableRow>
@@ -142,6 +143,8 @@
                     android:ems="10"
                     android:hint="@string/last_4_of_social"
                     android:inputType="number"
+                    android:maxLength="4"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/birthDatePickerButton" />
 
                 <Button
@@ -162,27 +165,11 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/datePickerButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:nextFocusDown="@+id/section2Spinner"
-                    android:text="@string/select_date"
-                    android:textColor="@color/white" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal">
-
                 <TextView
                     android:id="@+id/radioButtonsInstructionsLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:text="@string/please_select_the_items_you_would_nlike_to_include_in_your_letter" />
 
             </TableRow>
@@ -192,7 +179,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/radioButtons4Label"
+                    android:id="@+id/radioButtons1Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -200,21 +187,21 @@
                     android:text="@string/dispute_inaccurate_or_incorrect_names" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup4"
+                    android:id="@+id/radioGroup1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton4Yes"
+                        android:id="@+id/radioButton1Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton5Yes"
+                        android:nextFocusDown="@+id/radioButton2Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton4No"
+                        android:id="@+id/radioButton1No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
@@ -224,13 +211,13 @@
             <TableLayout
                 android:id="@+id/name_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/name_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/inaccurate_name"
@@ -245,8 +232,7 @@
                 <TableRow
                     android:id="@+id/name_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/name_spinner"
@@ -269,7 +255,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/radioButtons5Label"
+                    android:id="@+id/radioButtons2Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -277,21 +263,21 @@
                     android:text="@string/dispute_inaccurate_or_incorrect_addresses" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup5"
+                    android:id="@+id/radioGroup2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton5Yes"
+                        android:id="@+id/radioButton2Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton6Yes"
+                        android:nextFocusDown="@+id/radioButton3Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton5No"
+                        android:id="@+id/radioButton2No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
@@ -301,13 +287,13 @@
             <TableLayout
                 android:id="@+id/address_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/address_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/address_form"
@@ -331,8 +317,7 @@
                 <TableRow
                     android:id="@+id/address_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/city_form"
@@ -366,8 +351,7 @@
                 <TableRow
                     android:id="@+id/address_form_row3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/address_spinner"
@@ -401,8 +385,7 @@
                     android:id="@+id/address_text_fields_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <EditText
                         android:id="@+id/address_first_edit_text"
@@ -434,7 +417,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/radioButtons6Label"
+                    android:id="@+id/radioButtons3Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -442,21 +425,21 @@
                     android:text="@string/dispute_inaccurate_or_incorrect_accounts" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup6"
+                    android:id="@+id/radioGroup3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton6Yes"
+                        android:id="@+id/radioButton3Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton7Yes"
+                        android:nextFocusDown="@+id/radioButton4Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton6No"
+                        android:id="@+id/radioButton3No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
@@ -466,13 +449,13 @@
             <TableLayout
                 android:id="@+id/accounts_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/accounts_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/account_name"
@@ -497,8 +480,7 @@
                 <TableRow
                     android:id="@+id/accounts_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/accounts_spinner"
@@ -566,7 +548,7 @@
 
 
                 <TextView
-                    android:id="@+id/radioButtons7Label"
+                    android:id="@+id/radioButtons4Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -574,21 +556,21 @@
                     android:text="@string/dispute_inaccurate_or_incorrect_inquiries" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup7"
+                    android:id="@+id/radioGroup4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton7Yes"
+                        android:id="@+id/radioButton4Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton8Yes"
+                        android:nextFocusDown="@+id/radioButton5Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton7No"
+                        android:id="@+id/radioButton4No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
@@ -598,13 +580,13 @@
             <TableLayout
                 android:id="@+id/inquiries_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/inquiries_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/inquiry_name"
@@ -627,8 +609,7 @@
                 <TableRow
                     android:id="@+id/inquiries_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/inquiries_spinner"
@@ -647,55 +628,11 @@
             </TableLayout>
 
             <TableRow
-                android:id="@+id/inquiriesRow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <Spinner
-                    android:id="@+id/inquiriesDisputeSpinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <LinearLayout
-                    android:id="@+id/inquiries_text_fields_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                    <EditText
-                        android:id="@+id/inquiries_first_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/first_text_field"
-                        android:autofillHints=""
-                        android:inputType="text" />
-
-                    <EditText
-                        android:id="@+id/inquiries_second_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/second_text_field"
-                        android:autofillHints=""
-                        android:inputType="text" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/button" />
-
-                </LinearLayout>
-
-            </TableRow>
-
-            <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/radioButtons8Label"
+                    android:id="@+id/radioButtons5Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -703,21 +640,21 @@
                     android:text="@string/dispute_inaccurate_or_incorrect_public_records" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup8"
+                    android:id="@+id/radioGroup5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:orientation="horizontal">
 
                     <RadioButton
-                        android:id="@+id/radioButton8Yes"
+                        android:id="@+id/radioButton5Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton9Yes"
+                        android:nextFocusDown="@+id/radioButton6Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
-                        android:id="@+id/radioButton8No"
+                        android:id="@+id/radioButton5No"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
@@ -727,13 +664,13 @@
             <TableLayout
                 android:id="@+id/records_form_table"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <TableRow
                     android:id="@+id/records_form_row1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <EditText
                         android:id="@+id/record_name"
@@ -756,8 +693,7 @@
                 <TableRow
                     android:id="@+id/records_form_row2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
+                    android:layout_height="wrap_content">
 
                     <Spinner
                         android:id="@+id/records_spinner"
@@ -824,12 +760,116 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/radioButtons9Label"
+                    android:id="@+id/radioButtons6Label"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="6"
                     android:text="@string/freeze_your_credit_report" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton6Yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:nextFocusDown="@+id/radioButton7Yes"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton6No"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+                </RadioGroup>
+
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/radioButtons7Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:text="@string/stop_offers_in_the_mail" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton7Yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:nextFocusDown="@+id/radioButton7Yes"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton7No"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/radioButtons8Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:text="@string/are_you_including_additional_documents" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroup8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioButton8Yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:nextFocusDown="@+id/radioButton9Yes"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton8No"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no" />
+                </RadioGroup>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/radioButtons9Label"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="6"
+                    android:text="@string/copy_of_your_credit_report" />
 
                 <RadioGroup
                     android:id="@+id/radioGroup9"
@@ -842,7 +882,6 @@
                         android:id="@+id/radioButton9Yes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton10Yes"
                         android:text="@string/yes" />
 
                     <RadioButton
@@ -851,139 +890,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/no" />
                 </RadioGroup>
-
-
             </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/radioButtons10Label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:text="@string/stop_offers_in_the_mail" />
-
-                <RadioGroup
-                    android:id="@+id/radioGroup10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButton10Yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:nextFocusDown="@+id/radioButton12Yes"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton10No"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/radioButtons12Label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:text="@string/are_you_including_additional_documents" />
-
-                <RadioGroup
-                    android:id="@+id/radioGroup12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButton12Yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton12No"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/radioButtons13Label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="6"
-                    android:text="@string/copy_of_your_credit_report" />
-
-                <RadioGroup
-                    android:id="@+id/radioGroup13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioButton13Yes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/radioButton13No"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/no" />
-                </RadioGroup>
-            </TableRow>
-
-            <TableLayout
-                android:id="@+id/documents_form_table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TableRow
-                    android:id="@+id/documents_form_row1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone">
-
-                    <EditText
-                        android:id="@+id/documentEditText"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="4"
-                        android:hint="@string/enter_name_of_document"
-                        android:autofillHints="@string/enter_name_of_document"
-                        android:inputType="text"/>
-
-                    <Button
-                        android:id="@+id/documents_add_button"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/plus_button"
-                        android:textColor="@color/white" />
-                </TableRow>
-            </TableLayout>
 
         </TableLayout>
 

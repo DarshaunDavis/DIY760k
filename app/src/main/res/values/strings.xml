@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DIY 760</string>
     <string name="logo">DIY 760 Logo</string>
@@ -110,6 +111,27 @@
     <string name="innovis_title">Innovis</string>
     <string name="lexisnexis_title">LexisNexis</string>
     <string name="search">Search</string>
+    <string name="corelogic_complete_letter">CoreLogic Complete Letter</string>
+    <string name="corelogic_step_1_letter">CoreLogic Step 1 Letter</string>
+    <string name="corelogic_step_2_letter">CoreLogic Step 2 Letter</string>
+    <string name="equifax_complete_letter">Equifax Complete Letter</string>
+    <string name="equifax_step_1_letter">Equifax Step 1 Letter</string>
+    <string name="equifax_step_2_letter">Equifax Step 2 Letter</string>
+    <string name="experian_complete_letter">Experian Complete Letter</string>
+    <string name="experian_step_1_letter">Experian Step 1 Letter</string>
+    <string name="experian_step_2_letter">Experian Step 2 Letter</string>
+    <string name="innovis_complete_letter">Innovis Complete Letter</string>
+    <string name="innovis_step_1_letter">Innovis Step 1 Letter</string>
+    <string name="innovis_step_2_letter">Innovis Step 2 Letter</string>
+    <string name="lexisnexis_complete_letter">LexisNexis Complete Letter</string>
+    <string name="lexisnexis_step_1_letter">LexisNexis Step 1 Letter</string>
+    <string name="lexisnexis_step_2_letter">LexisNexis Step 2 Letter</string>
+    <string name="sagestream_complete_letter">SageStream Complete Letter</string>
+    <string name="sagestream_step_1_letter">SageStream Step 1 Letter</string>
+    <string name="sagestream_step_2_letter">SageStream Step 2 Letter</string>
+    <string name="transunion_complete_letter">TransUnion Complete Letter</string>
+    <string name="transunion_step_1_letter">TransUnion Step 1 Letter</string>
+    <string name="transunion_step_2_letter">TransUnion Step 2 Letter</string>
 
     <string-array name="company_addresses">
         <item>Experian\nP.O. Box 4500\nAllen, TX 75013</item>

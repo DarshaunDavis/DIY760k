@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <!-- Add your views here -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="LexisNexis Complete Letter"
+                    android:text="@string/lexisnexis_complete_letter"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -45,6 +45,7 @@
                     android:ems="10"
                     android:hint="@string/first_name"
                     android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/lastNameEditText" />
 
                 <EditText
@@ -56,6 +57,7 @@
                     android:ems="10"
                     android:hint="@string/last_name"
                     android:inputType="textCapSentences"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/addressEditText" />
 
             </TableRow>
@@ -74,6 +76,7 @@
                     android:ems="14"
                     android:hint="@string/address"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/apartmentEditText" />
 
                 <EditText
@@ -85,6 +88,7 @@
                     android:ems="4"
                     android:hint="@string/apt"
                     android:inputType="textCapCharacters"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/cityEditText" />
 
             </TableRow>
@@ -103,6 +107,7 @@
                     android:ems="10"
                     android:hint="@string/city"
                     android:inputType="textCapWords"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/stateSpinner" />
 
                 <Spinner
@@ -122,6 +127,7 @@
                     android:hint="@string/zip_code"
                     android:inputType="number"
                     android:maxLength="5"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/SocialEditText" />
 
             </TableRow>
@@ -138,6 +144,7 @@
                     android:hint="@string/last_4_of_social"
                     android:inputType="number"
                     android:maxLength="4"
+                    android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/birthDatePickerButton" />
 
                 <Button

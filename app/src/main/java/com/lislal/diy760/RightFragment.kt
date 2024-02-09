@@ -1,12 +1,17 @@
 package com.lislal.diy760
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.Button
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RadioButton
@@ -104,6 +109,9 @@ class RightFragment : Fragment() {
                 setupRadioButtons(customView)
                 initializeCustomView(customView) // Implement this based on your custom view's needs
 
+                // Apply the dynamic EditText listener setup to the loaded customView
+                setupDynamicEditTextListener(customView)
+
                 // Setup generateButton and letterTextView logic
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
@@ -133,8 +141,17 @@ class RightFragment : Fragment() {
     private fun setupDatePickerButton(customView: View) {
         val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
         birthDatePickerButton?.setOnClickListener {
+            // Hide the keyboard before showing the DatePickerDialog
+            hideKeyboard(requireContext(), birthDatePickerButton)
+
+            // Show the DatePickerDialog
             showDatePickerDialog(birthDatePickerButton)
         }
+    }
+
+    private fun hideKeyboard(context: Context, view: View) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun setupRadioButtons(view: View) {
@@ -264,5 +281,53 @@ class RightFragment : Fragment() {
         }
         return true
     }
+
+    private fun setupDynamicEditTextListener(customView: View) {
+        // Directly find the cityEditText in the dynamically loaded customView
+        val cityEditText = customView.findViewById<EditText>(R.id.cityEditText)
+        val stateSpinner = customView.findViewById<Spinner>(R.id.stateSpinner)
+        val zipEditText = customView.findViewById<EditText>(R.id.zipEditText)
+        val socialEditText = customView.findViewById<EditText>(R.id.socialEditText)
+        val birthDatePickerButton = customView.findViewById<Button>(R.id.birthDatePickerButton)
+
+        // Check if the views are not null to avoid any null pointer exception
+        if (cityEditText != null && stateSpinner != null && zipEditText != null) {
+            // Set the listener on cityEditText
+            cityEditText.setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    // Focus the stateSpinner programmatically to show dropdown
+                    stateSpinner.performClick()
+                    true // Indicate that the action was handled
+                } else {
+                    false // Indicate that the action was not handled
+                }
+            }
+
+            // Set up the OnItemSelectedListener for stateSpinner
+            stateSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                    // Move focus to zipEditText after a selection has been made
+                    zipEditText.requestFocus()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    // Optionally handle the case where nothing is selected
+                }
+            }
+
+            if (socialEditText != null && birthDatePickerButton != null) {
+                socialEditText.setOnEditorActionListener { v, actionId, _ ->
+                    if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                        // Simulate a click on the birthDatePickerButton
+                        birthDatePickerButton.performClick()
+                        true // Indicate that the action was handled
+                    } else {
+                        false // Indicate that the action was not handled
+                    }
+                }
+            }
+        }
+    }
+
 
 }
