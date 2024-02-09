@@ -32,6 +32,8 @@ class LeftFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val customContainer: FrameLayout = view.findViewById(R.id.customContainer)
+
         // Setup the toolbar
         val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbar)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
@@ -42,10 +44,14 @@ class LeftFragment : Fragment() {
         // Setup RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        // Initialize the adapter with data from LayoutDataProvider and set this adapter to the RecyclerView
+
+        // Initialize the adapter with data and set up click listener for dynamic content loading
         adapter = LayoutsAdapter(LayoutDataProvider.layoutsList.toMutableList()) { layoutModel ->
-            // Placeholder for handling layout item clicks
-            // Here, you can navigate to another fragment or activity that displays the selected layout
+        // Dynamically load the custom layout associated with the clicked item
+            val customView = LayoutInflater.from(context).inflate(layoutModel.resourceId, customContainer, false)
+            customContainer.removeAllViews()
+            customContainer.addView(customView)
+            // Here, you could initialize components of customView if necessary
         }
         recyclerView.adapter = adapter
     }
