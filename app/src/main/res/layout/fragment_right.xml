@@ -18,14 +18,14 @@
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/text_view_background"
                 android:padding="10dp"
-                android:text="In Step 1, you're going to freeze and request copies of your reports from each of the three major bureaus and the four minor reporting agencies.  &#xA;&#xA;Estimated Timeframe: 30 Days" />
+                android:text="@string/right_fragment_step_1_text" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button1"
                 style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Step 1 - Freeze and Request Reports" />
+                android:text="@string/right_fragment_step_1_button" />
 
             <LinearLayout
                 android:id="@+id/buttonAndTextContainer"
@@ -46,64 +46,56 @@
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Equifax"
-                        android:enabled="false" />
+                        android:text="@string/equifax_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button3"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Experian"
-                        android:enabled="false" />
+                        android:text="@string/experian_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button4"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="TransUnion"
-                        android:enabled="false" />
+                        android:text="@string/transunion_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button5"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="SageStream"
-                        android:enabled="false" />
+                        android:text="@string/sagestream_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button6"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="CoreLogic"
-                        android:enabled="false" />
+                        android:text="@string/corelogic_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button7"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Innovis"
-                        android:enabled="false" />
+                        android:text="@string/innovis_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button8"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="LexisNexis"
-                        android:enabled="false" />
+                        android:text="@string/lexisnexis_title" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/button9"
                         style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Complete Step 1"
-                        android:enabled="false" />
+                        android:text="@string/right_fragment_complete_step_1" />
 
                 </LinearLayout>
 
@@ -116,7 +108,7 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/text_view_background"
                     android:padding="10dp"
-                    android:text="Equifax, Experian, and TransUnion are the three Major Credit Bureaus that provide your credit report and scores to creditors.&#xA;&#xA;SageStream, CoreLogic, Innovis, and LexisNexis are data furnishers or reporting agencies that provide information that the credit bureaus use to build your credit profile." />
+                    android:text="@string/right_fragment_step_1_description" />
             </LinearLayout>
 
         <com.google.android.material.textview.MaterialTextView
@@ -125,7 +117,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_background"
             android:padding="10dp"
-            android:text="In Step 2, you will dispute and remove inaccurate names, addresses, phone numbers, and employers from each of your major and minor credit reports. &#xA;&#xA;This step will normally require 1 to 2 letters to achieve your goal. &#xA;&#xA;Estimated Timeframe: 30 Days - 60 Days"
+            android:text="@string/right_fragment_step_2_text"
             android:visibility="gone"
             android:layout_marginTop="16dp" />
 
@@ -134,7 +126,7 @@
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Step 2 - Update Personal Information"
+            android:text="@string/right_fragment_step_2_button"
             android:visibility="gone"
             android:enabled="false" />
 
@@ -157,64 +149,56 @@
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Equifax"
-                    android:enabled="false" />
+                    android:text="@string/equifax_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button12"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Experian"
-                    android:enabled="false" />
+                    android:text="@string/experian_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button13"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TransUnion"
-                    android:enabled="false" />
+                    android:text="@string/transunion_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button14"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="SageStream"
-                    android:enabled="false" />
+                    android:text="@string/sagestream_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button15"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CoreLogic"
-                    android:enabled="false" />
+                    android:text="@string/corelogic_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button16"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Innovis"
-                    android:enabled="false" />
+                    android:text="@string/innovis_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button17"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LexisNexis"
-                    android:enabled="false" />
+                    android:text="@string/lexisnexis_title" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button18"
                     style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Complete Step 2"
-                    android:enabled="false" />
+                    android:text="@string/right_fragment_complete_step_2" />
 
             </LinearLayout>
 
@@ -227,7 +211,7 @@
                 android:layout_marginStart="10dp"
                 android:background="@drawable/text_view_background"
                 android:padding="10dp"
-                android:text="In Step 2 , you will freeze your reports with each of the agencies and request your credit report from them. &#xA;&#xA;Estimated Timeframe: 30 Days"
+                android:text="@string/right_fragment_step_2_description"
                 />
         </LinearLayout>
 
@@ -237,7 +221,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/text_view_background"
             android:padding="10dp"
-            android:text="In Step 3, you will dispute and remove inaccurate accounts, inquiries, and public records. &#xA;&#xA;This step will normally require 1 to 2 letters to achieve your goal. &#xA;&#xA;Estimated Timeframe: 30 Days - 60 Days"
+            android:text="@string/right_fragment_step_3_text"
             android:visibility="gone"
             android:layout_marginTop="16dp" />
 
@@ -246,7 +230,7 @@
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Step 3 - Dispute Inaccurate Items"
+            android:text="@string/right_fragment_step_3_button"
             android:visibility="gone"
             android:enabled="false" />
 

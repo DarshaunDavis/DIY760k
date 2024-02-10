@@ -114,6 +114,30 @@ class TextGenerator {
         }
     }
 
+    fun setupNameDisputeSpinner(customView: View, context: Context) {
+        val spinner = customView.findViewById<Spinner>(R.id.name_spinner)
+        ArrayAdapter.createFromResource(
+            context,
+            R.array.name_dispute_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+    }
+
+    fun setupDisputeResultsSpinner(customView: View, context: Context) {
+        val spinner = customView.findViewById<Spinner>(R.id.name_result_spinner)
+        ArrayAdapter.createFromResource(
+            context,
+            R.array.dispute_results_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+    }
+
     // Function to add real-time validation listeners
     private fun addValidationListeners(customView: View) {
         val editTextIds = listOf(
@@ -169,6 +193,9 @@ class TextGenerator {
         val zipCode = customView.findViewById<EditText>(R.id.zipEditText)?.text.toString().trim()
         val social = customView.findViewById<EditText>(R.id.socialEditText)?.text.toString().trim()
         val birthDate = customView.findViewById<Button>(R.id.birthDatePickerButton)?.text.toString().trim()
+        val inaccurateName = customView.findViewById<EditText>(R.id.inaccurate_name)?.text.toString().trim()
+        val disputeReason = customView.findViewById<Spinner>(R.id.name_spinner)?.selectedItem.toString()
+        val disputeResult = customView.findViewById<Spinner>(R.id.name_result_spinner)?.selectedItem.toString()
 
         // Correctly format and append user details to stringBuilder
         stringBuilder.apply {
@@ -193,9 +220,20 @@ class TextGenerator {
             stringBuilder.append("Dear $formattedCompanyName,\n\n")
         }
 
+        // Ensure the reason is valid and not the default spinner prompt
+        if (disputeReason == context.getString(R.string.click_to_select_your_reason_for_disputing)) {
+            Toast.makeText(context, "Please select a valid reason for disputing.", Toast.LENGTH_SHORT).show()
+            return null // or handle appropriately
+        }
+        // Ensure the reason is valid and not the default spinner prompt
+        if (disputeResult == context.getString(R.string.click_to_select_the_result_you_want)) {
+            Toast.makeText(context, "Please select a valid reason for disputing.", Toast.LENGTH_SHORT).show()
+            return null // or handle appropriately
+        }
+
         // Instantiate LetterGenerator and generate the letter content with names
         val letterGenerator = LetterGenerator(context, radioSelections)
-        val letterContent = letterGenerator.generateRandomizedLetter(firstName, lastName)
+        val letterContent = letterGenerator.generateRandomizedLetter(firstName, lastName, inaccurateName, disputeReason, disputeResult)
         stringBuilder.append(letterContent)
 
         return stringBuilder.toString()

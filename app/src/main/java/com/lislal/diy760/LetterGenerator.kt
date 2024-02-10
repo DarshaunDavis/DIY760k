@@ -17,7 +17,7 @@ class LetterGenerator(private val context: Context, private val radioSelections:
     }
 
     // Public function to generate the letter with randomized content
-    fun generateRandomizedLetter(firstName: String = "", lastName: String = ""): String {
+    fun generateRandomizedLetter(firstName: String = "", lastName: String = "", inaccurateName: String = "", disputeReason: String = "", disputeResult: String = ""): String {
         // StringBuilder to build the final letter text
         val stringBuilder = StringBuilder()
 
@@ -48,6 +48,16 @@ class LetterGenerator(private val context: Context, private val radioSelections:
                 val randomVersion = getRandomSectionVersion(pair.second)
                 stringBuilder.append("$randomVersion\n\n")
             }
+        }
+
+        // Handle section2 customization
+        if (inaccurateName.isNotEmpty() && disputeReason.isNotEmpty()) {
+            val section2Id = R.array.section2_versions
+            val section2Version = getRandomSectionVersion(section2Id)
+            stringBuilder.append("$section2Version\n\n" +
+                    "Name: $inaccurateName\n" +
+                    "Reason: $disputeReason\n" +
+                    "Desired Result: $disputeResult\n\n")
         }
 
         // Section that is always included last

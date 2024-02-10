@@ -112,6 +112,16 @@ class RightFragment : Fragment() {
                 // Apply the dynamic EditText listener setup to the loaded customView
                 setupDynamicEditTextListener(customView)
 
+                // Call setupNameDisputeSpinner here for the name dispute section
+                if (customView.findViewById<Spinner>(R.id.name_spinner) != null) {
+                    textGenerator.setupNameDisputeSpinner(customView, requireContext())
+                }
+
+                // Call setupDisputeResultsSpinner here for the name dispute section
+                if (customView.findViewById<Spinner>(R.id.name_result_spinner) != null) {
+                    textGenerator.setupDisputeResultsSpinner(customView, requireContext())
+                }
+
                 // Setup generateButton and letterTextView logic
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
