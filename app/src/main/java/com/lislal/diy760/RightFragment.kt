@@ -46,6 +46,7 @@ class RightFragment : Fragment() {
         val buttons = (1..19).map { id ->
             view.findViewById<Button>(resources.getIdentifier("button$id", "id", context?.packageName))
         }
+
         val textViewExplanation = listOf(
             view.findViewById<TextView>(R.id.textViewExplanation1),
             view.findViewById<TextView>(R.id.textViewExplanation2),
@@ -59,7 +60,7 @@ class RightFragment : Fragment() {
         )
 
         val buttonActions = mapOf(
-            1 to ButtonAction(R.layout.custom_layout, 2),
+            1 to ButtonAction(R.layout.equifax_step_1_letter_layout, 2),
             2 to ButtonAction(R.layout.experian_step_1_letter_layout, null),
             3 to ButtonAction(R.layout.transunion_step_1_letter_layout, null),
             4 to ButtonAction(R.layout.sagestream_step_1_letter_layout, null),
@@ -121,6 +122,13 @@ class RightFragment : Fragment() {
                 if (customView.findViewById<Spinner>(R.id.name_result_spinner) != null) {
                     textGenerator.setupDisputeResultsSpinner(customView, requireContext())
                 }
+
+                /**val addButton = customView.findViewById<Button>(R.id.name_add_button)
+                addButton.setOnClickListener {
+                    // Duplicate the name form section on add button click
+                    duplicateNameFormSection()
+                }**/
+
 
                 // Setup generateButton and letterTextView logic
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
@@ -338,6 +346,28 @@ class RightFragment : Fragment() {
             }
         }
     }
+
+    /**private fun duplicateNameFormSection() {
+        // Get the parent layout where the new TableLayout will be added
+        val parentLayout = view?.findViewById<LinearLayout>(R.id.main_linear_layout) // Adjust with the actual ID of your parent layout
+
+        // Inflate the TableLayout from XML or create it programmatically
+        val newTableLayout = LayoutInflater.from(context).inflate(R.layout.name_form_table, parentLayout, false) as TableLayout
+
+        // Setup the new TableLayout (e.g., setup spinners, buttons within it)
+        setupNameDisputeSpinner(newTableLayout, requireContext())
+        setupDisputeResultsSpinner(newTableLayout, requireContext())
+
+        // Handle the add button click within the newTableLayout
+        val addButton = newTableLayout.findViewById<Button>(R.id.name_add_button)
+        addButton.setOnClickListener {
+            // Handle click to add another name form section
+            duplicateNameFormSection()
+        }
+
+        // Add the new TableLayout to the parent layout
+        parentLayout?.addView(newTableLayout)
+    }**/
 
 
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/radioButtons4Label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="6"
+            android:text="@string/dispute_inaccurate_or_incorrect_inquiries" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton4Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:nextFocusDown="@+id/radioButton5Yes"
+                android:text="@string/yes" />
+
+            <RadioButton
+                android:id="@+id/radioButton4No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+        </RadioGroup>
+    </TableRow>
+
+    <TableLayout
+        android:id="@+id/inquiries_form_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <TableRow
+            android:id="@+id/inquiries_form_row1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/inquiry_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/inquiry_name"
+                android:autofillHints="@string/inquiry_name"
+                android:inputType="text"/>
+
+            <Button
+                android:id="@+id/inquiry_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/select_date"
+                android:textColor="@color/white" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/inquiries_form_row2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Spinner
+                android:id="@+id/inquiries_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4" />
+
+            <Button
+                android:id="@+id/inquiries_add_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/plus_button"
+                android:textColor="@color/white" />
+        </TableRow>
+    </TableLayout>
+
+</TableLayout>

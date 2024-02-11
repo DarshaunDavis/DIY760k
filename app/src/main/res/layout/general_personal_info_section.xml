@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/firstNameEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/first_name"
+            android:ems="10"
+            android:hint="@string/first_name"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:nextFocusDown="@+id/lastNameEditText" />
+
+        <EditText
+            android:id="@+id/lastNameEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/last_name"
+            android:ems="10"
+            android:hint="@string/last_name"
+            android:imeOptions="actionNext"
+            android:inputType="textCapSentences"
+            android:nextFocusDown="@+id/addressEditText" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/addressEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="3"
+            android:autofillHints="@string/address"
+            android:ems="14"
+            android:hint="@string/address"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:nextFocusDown="@+id/apartmentEditText" />
+
+        <EditText
+            android:id="@+id/apartmentEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:autofillHints="@string/apt"
+            android:ems="4"
+            android:hint="@string/apt"
+            android:imeOptions="actionNext"
+            android:inputType="textCapCharacters"
+            android:nextFocusDown="@+id/cityEditText" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/cityEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2.5"
+            android:autofillHints="@string/city"
+            android:ems="10"
+            android:hint="@string/city"
+            android:imeOptions="actionNext"
+            android:inputType="textCapWords"
+            android:nextFocusDown="@+id/stateSpinner" />
+
+        <Spinner
+            android:id="@+id/stateSpinner"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1.5"
+            android:nextFocusDown="@+id/zipEditText" />
+
+        <EditText
+            android:id="@+id/zipEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1.5"
+            android:autofillHints="@string/zip_code"
+            android:ems="6"
+            android:hint="@string/zip_code"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="5"
+            android:nextFocusDown="@+id/SocialEditText" />
+
+    </TableRow>
+
+    <TableRow>
+
+        <EditText
+            android:id="@+id/socialEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="2"
+            android:autofillHints="@string/last_4_of_social"
+            android:ems="10"
+            android:hint="@string/last_4_of_social"
+            android:imeOptions="actionNext"
+            android:inputType="number"
+            android:maxLength="4"
+            android:nextFocusDown="@+id/birthDatePickerButton" />
+
+        <Button
+            android:id="@+id/birthDatePickerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autofillHints="@string/select_birthdate"
+            android:nextFocusDown="@+id/datePickerButton"
+            android:text="@string/select_birthdate"
+            android:textColor="@color/white" />
+
+    </TableRow>
+
+</TableLayout>
