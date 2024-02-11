@@ -36,11 +36,16 @@ class RightFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_right, container, false)
+        // Inflate the layout for this fragment only
+        return inflater.inflate(R.layout.fragment_right, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         // Initialization and setup calls...
-        setupRadioButtons(view) // Setup radio buttons and track selections
         val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
+        setupRadioButtons(view) // Setup radio buttons and track selections
 
         // Dynamically find button IDs and initialize buttons
         val buttons = (1..19).map { id ->
@@ -59,7 +64,13 @@ class RightFragment : Fragment() {
             view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer)
         )
 
-        val buttonActions = mapOf(
+        val buttonActions = defineButtonActions()
+        setupButtonActions(buttonActions, buttons, customContainer)
+        setupSpecialButtons(buttons, textViewExplanation, containers, customContainer)
+    }
+
+    private fun defineButtonActions(): Map<Int, ButtonAction> {
+        return mapOf(
             1 to ButtonAction(R.layout.equifax_step_1_letter_layout, 2),
             2 to ButtonAction(R.layout.experian_step_1_letter_layout, null),
             3 to ButtonAction(R.layout.transunion_step_1_letter_layout, null),
@@ -75,14 +86,6 @@ class RightFragment : Fragment() {
             15 to ButtonAction(R.layout.innovis_step_2_letter_layout, null),
             16 to ButtonAction(R.layout.lexisnexis_step_2_letter_layout, null)
         )
-
-        // Setup button actions using the new approach
-        setupButtonActions(buttonActions, buttons, customContainer)
-
-        // Handle special button actions
-        setupSpecialButtons(buttons, textViewExplanation, containers, customContainer)
-
-        return view
     }
 
     private fun setupButtonActions(
@@ -123,13 +126,6 @@ class RightFragment : Fragment() {
                     textGenerator.setupDisputeResultsSpinner(customView, requireContext())
                 }
 
-                /**val addButton = customView.findViewById<Button>(R.id.name_add_button)
-                addButton.setOnClickListener {
-                    // Duplicate the name form section on add button click
-                    duplicateNameFormSection()
-                }**/
-
-
                 // Setup generateButton and letterTextView logic
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
@@ -165,11 +161,6 @@ class RightFragment : Fragment() {
             // Show the DatePickerDialog
             showDatePickerDialog(birthDatePickerButton)
         }
-    }
-
-    private fun hideKeyboard(context: Context, view: View) {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun setupRadioButtons(view: View) {
@@ -209,21 +200,6 @@ class RightFragment : Fragment() {
         }
     }
 
-    private fun showDatePickerDialog(button: Button) {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-
-        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, dayOfMonth ->
-            // Format the selected date and set it as the button text
-            val selectedDate = "${selectedMonth + 1}/$dayOfMonth/$selectedYear"
-            button.text = selectedDate // Update the button text instead of EditText
-        }, year, month, day)
-
-        datePickerDialog.show()
-    }
-
     private fun setupSpecialButtons(buttons: List<Button>, textViewExplanation: List<TextView>, containers: List<LinearLayout>, customContainer: FrameLayout) {
         buttons[0].setOnClickListener {
             // Special logic for button1
@@ -236,7 +212,7 @@ class RightFragment : Fragment() {
         buttons[8].setOnClickListener {
             // Click logic for button9 (Complete Step 1)
             it.isEnabled = false
-            buttons[0].text = "Step 1 Complete"
+            buttons[0].text = getString(R.string.right_fragment_complete_step_1_text)
             containers[0].visibility = View.GONE
             customContainer.visibility = View.GONE // Hide or clear the custom layout container
             customContainer.removeAllViews() // Optionally remove all views from the custom container
@@ -264,7 +240,7 @@ class RightFragment : Fragment() {
             textViewExplanation[4].visibility = View.VISIBLE
             buttons[18].visibility = View.VISIBLE
             buttons[18].isEnabled = true // Enable Step 3 initiation
-            buttons[9].text = "Step 2 Complete" // Update Step 2 button text
+            buttons[9].text = getString(R.string.right_fragment_complete_step_2_text) // Update Step 2 button text
         }
 
         // Assuming you want similar functionality for button19 (Step 3 initiation) as previous steps
@@ -275,9 +251,29 @@ class RightFragment : Fragment() {
             textViewExplanation[4].visibility = View.GONE // Assuming this is textViewExplanation4
             textViewExplanation[0].visibility = View.VISIBLE
             buttons[0].isEnabled = true
-            buttons[0].text = "Step 1 - Freeze and Request Reports"
-            buttons[9].text = "Step 2 - Update Personal Information" // Assuming buttons[8] is button9
+            buttons[0].text = getString(R.string.right_fragment_step_1_button)
+            buttons[9].text = getString(R.string.right_fragment_step_2_button) // Assuming buttons[8] is button9
         }
+    }
+
+    private fun hideKeyboard(context: Context, view: View) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    private fun showDatePickerDialog(button: Button) {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, dayOfMonth ->
+            // Format the selected date and set it as the button text
+            val selectedDate = "${selectedMonth + 1}/$dayOfMonth/$selectedYear"
+            button.text = selectedDate // Update the button text instead of EditText
+        }, year, month, day)
+
+        datePickerDialog.show()
     }
 
     private fun areAllRadioGroupsValidated(customView: View): Boolean {
@@ -346,28 +342,4 @@ class RightFragment : Fragment() {
             }
         }
     }
-
-    /**private fun duplicateNameFormSection() {
-        // Get the parent layout where the new TableLayout will be added
-        val parentLayout = view?.findViewById<LinearLayout>(R.id.main_linear_layout) // Adjust with the actual ID of your parent layout
-
-        // Inflate the TableLayout from XML or create it programmatically
-        val newTableLayout = LayoutInflater.from(context).inflate(R.layout.name_form_table, parentLayout, false) as TableLayout
-
-        // Setup the new TableLayout (e.g., setup spinners, buttons within it)
-        setupNameDisputeSpinner(newTableLayout, requireContext())
-        setupDisputeResultsSpinner(newTableLayout, requireContext())
-
-        // Handle the add button click within the newTableLayout
-        val addButton = newTableLayout.findViewById<Button>(R.id.name_add_button)
-        addButton.setOnClickListener {
-            // Handle click to add another name form section
-            duplicateNameFormSection()
-        }
-
-        // Add the new TableLayout to the parent layout
-        parentLayout?.addView(newTableLayout)
-    }**/
-
-
 }

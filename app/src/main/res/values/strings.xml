@@ -137,10 +137,12 @@
     <string name="right_fragment_step_1_text">In Step 1, you\'re going to freeze and request copies of your reports from each of the three major bureaus and the four minor reporting agencies. \n\nEstimated Timeframe: 30 Days</string>
     <string name="right_fragment_step_1_button">Step 1 - Freeze and Request Reports</string>
     <string name="right_fragment_complete_step_1">Complete Step 1</string>
+    <string name="right_fragment_complete_step_1_text">Step 1 Complete</string>
     <string name="right_fragment_step_1_description">Equifax, Experian, and TransUnion are the three Major Credit Bureaus that provide your credit report and scores to creditors.\n\nSageStream, CoreLogic, Innovis, and LexisNexis are data furnishers or reporting agencies that provide information that the credit bureaus use to build your credit profile.</string>
     <string name="right_fragment_step_2_text">In Step 2, you will dispute and remove inaccurate names, addresses, phone numbers, and employers from each of your major and minor credit reports. \n\nThis step will normally require 1 to 2 letters to achieve your goal. \n\nEstimated Timeframe: 30 Days - 60 Days</string>
     <string name="right_fragment_step_2_button">Step 2 - Update Personal Information</string>
     <string name="right_fragment_complete_step_2">Complete Step 2</string>
+    <string name="right_fragment_complete_step_2_text">Step 1 Complete</string>
     <string name="right_fragment_step_2_description">In Step 2 , you will freeze your reports with each of the agencies and request your credit report from them. \n\nEstimated Timeframe: 30 Days</string>
     <string name="right_fragment_step_3_text">In Step 3, you will dispute and remove inaccurate accounts, inquiries, and public records. \n\nThis step will normally require 1 to 2 letters to achieve your goal. \n\nEstimated Timeframe: 30 Days - 60 Days</string>
     <string name="right_fragment_step_3_button">Step 3 - Dispute Inaccurate Items</string>
