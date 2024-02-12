@@ -25,4 +25,89 @@
         android:visibility="gone"
         android:enabled="false" />
 
+    <LinearLayout
+        android:id="@+id/thirdButtonAndTextContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/thirdButtonColumn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button20"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/equifax_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button21"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/experian_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button22"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/transunion_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button23"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sagestream_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button24"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/corelogic_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button25"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/innovis_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button26"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lexisnexis_title" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button27"
+                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/right_fragment_complete_step_3" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewExplanation6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/text_view_background"
+            android:padding="10dp"
+            android:text="@string/right_fragment_step_2_description"
+            />
+    </LinearLayout>
+
 </LinearLayout>

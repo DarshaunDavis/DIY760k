@@ -142,10 +142,13 @@
     <string name="right_fragment_step_2_text">In Step 2, you will dispute and remove inaccurate names, addresses, phone numbers, and employers from each of your major and minor credit reports. \n\nThis step will normally require 1 to 2 letters to achieve your goal. \n\nEstimated Timeframe: 30 Days - 60 Days</string>
     <string name="right_fragment_step_2_button">Step 2 - Update Personal Information</string>
     <string name="right_fragment_complete_step_2">Complete Step 2</string>
-    <string name="right_fragment_complete_step_2_text">Step 1 Complete</string>
+    <string name="right_fragment_complete_step_2_text">Step 2 Complete</string>
     <string name="right_fragment_step_2_description">In Step 2 , you will freeze your reports with each of the agencies and request your credit report from them. \n\nEstimated Timeframe: 30 Days</string>
     <string name="right_fragment_step_3_text">In Step 3, you will dispute and remove inaccurate accounts, inquiries, and public records. \n\nThis step will normally require 1 to 2 letters to achieve your goal. \n\nEstimated Timeframe: 30 Days - 60 Days</string>
     <string name="right_fragment_step_3_button">Step 3 - Dispute Inaccurate Items</string>
+    <string name="right_fragment_complete_step_3">Complete Step 3</string>
+    <string name="right_fragment_complete_step_3_text">Step 3 Complete</string>
+    <string name="right_fragment_step_4_button">Step 4 - Second Round of Letters</string>
 
     <string-array name="company_addresses">
         <item>Experian\nP.O. Box 4500\nAllen, TX 75013</item>

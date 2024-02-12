@@ -48,8 +48,14 @@ class RightFragment : Fragment() {
         setupRadioButtons(view) // Setup radio buttons and track selections
 
         // Dynamically find button IDs and initialize buttons
-        val buttons = (1..19).map { id ->
-            view.findViewById<Button>(resources.getIdentifier("button$id", "id", context?.packageName))
+        val buttons = (1..28).map { id ->
+            view.findViewById<Button>(
+                resources.getIdentifier(
+                    "button$id",
+                    "id",
+                    context?.packageName
+                )
+            )
         }
 
         val textViewExplanation = listOf(
@@ -57,11 +63,13 @@ class RightFragment : Fragment() {
             view.findViewById<TextView>(R.id.textViewExplanation2),
             view.findViewById<TextView>(R.id.textViewExplanation3),
             view.findViewById<TextView>(R.id.textViewExplanation4),
-            view.findViewById<TextView>(R.id.textViewExplanation5)
+            view.findViewById<TextView>(R.id.textViewExplanation5),
+            view.findViewById<TextView>(R.id.textViewExplanation6)
         )
         val containers = listOf(
             view.findViewById<LinearLayout>(R.id.buttonAndTextContainer),
-            view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer)
+            view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer),
+            view.findViewById<LinearLayout>(R.id.thirdButtonAndTextContainer)
         )
 
         val buttonActions = defineButtonActions()
@@ -84,7 +92,14 @@ class RightFragment : Fragment() {
             13 to ButtonAction(R.layout.sagestream_step_2_letter_layout, null),
             14 to ButtonAction(R.layout.corelogic_step_2_letter_layout, null),
             15 to ButtonAction(R.layout.innovis_step_2_letter_layout, null),
-            16 to ButtonAction(R.layout.lexisnexis_step_2_letter_layout, null)
+            16 to ButtonAction(R.layout.lexisnexis_step_2_letter_layout, null),
+            19 to ButtonAction(R.layout.equifax_complete_letter_layout, 20),
+            20 to ButtonAction(R.layout.experian_complete_letter_layout, null),
+            21 to ButtonAction(R.layout.transunion_complete_letter_layout, null),
+            22 to ButtonAction(R.layout.sagestream_complete_letter_layout, null),
+            23 to ButtonAction(R.layout.corelogic_complete_letter_layout, null),
+            24 to ButtonAction(R.layout.innovis_complete_letter_layout, null),
+            25 to ButtonAction(R.layout.lexisnexis_complete_letter_layout, null)
         )
     }
 
@@ -99,7 +114,8 @@ class RightFragment : Fragment() {
             buttons[index].setOnClickListener { // Adjusted index to match the button list (if needed)
                 customContainer.visibility = View.VISIBLE
                 customContainer.removeAllViews()
-                val customView = LayoutInflater.from(requireContext()).inflate(action.layoutResId, customContainer, false)
+                val customView = LayoutInflater.from(requireContext())
+                    .inflate(action.layoutResId, customContainer, false)
                 customContainer.addView(customView)
 
                 // Immediate Initialization Logic Here
@@ -131,11 +147,19 @@ class RightFragment : Fragment() {
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
                     if (areAllRadioGroupsValidated(customView)) {
-                        val displayText = textGenerator.generateTextFromLayout(customView, requireContext(), radioSelections)
+                        val displayText = textGenerator.generateTextFromLayout(
+                            customView,
+                            requireContext(),
+                            radioSelections
+                        )
                         letterTextView?.visibility = View.VISIBLE
                         letterTextView?.text = displayText
                     } else {
-                        Toast.makeText(requireContext(), "Please make a selection for all questions.", Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            requireContext(),
+                            "Please make a selection for all questions.",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 }
             }
@@ -200,19 +224,24 @@ class RightFragment : Fragment() {
         }
     }
 
-    private fun setupSpecialButtons(buttons: List<Button>, textViewExplanation: List<TextView>, containers: List<LinearLayout>, customContainer: FrameLayout) {
+    private fun setupSpecialButtons(
+        buttons: List<Button>,
+        textViewExplanation: List<TextView>,
+        containers: List<LinearLayout>,
+        customContainer: FrameLayout
+    ) {
         buttons[0].setOnClickListener {
             // Special logic for button1
             it.isEnabled = false
             textViewExplanation[0].visibility = View.GONE
             containers[0].visibility = View.VISIBLE
-            buttons.subList(1, 9).forEach { button -> button.isEnabled = true } // Enable buttons 2-9 when Step 1 is initiated
         }
 
         buttons[8].setOnClickListener {
             // Click logic for button9 (Complete Step 1)
             it.isEnabled = false
             buttons[0].text = getString(R.string.right_fragment_complete_step_1_text)
+            buttons[0].isEnabled = true
             containers[0].visibility = View.GONE
             customContainer.visibility = View.GONE // Hide or clear the custom layout container
             customContainer.removeAllViews() // Optionally remove all views from the custom container
@@ -227,7 +256,6 @@ class RightFragment : Fragment() {
             textViewExplanation[2].visibility = View.GONE
             textViewExplanation[3].visibility = View.VISIBLE
             containers[1].visibility = View.VISIBLE
-            buttons.subList(10, 18).forEach { button -> button.isEnabled = true } // Enable buttons 11-18 when Step 2 is initiated
         }
 
         buttons[17].setOnClickListener {
@@ -240,19 +268,31 @@ class RightFragment : Fragment() {
             textViewExplanation[4].visibility = View.VISIBLE
             buttons[18].visibility = View.VISIBLE
             buttons[18].isEnabled = true // Enable Step 3 initiation
-            buttons[9].text = getString(R.string.right_fragment_complete_step_2_text) // Update Step 2 button text
+            buttons[9].text =
+                getString(R.string.right_fragment_complete_step_2_text) // Update Step 2 button text
+            buttons[9].isEnabled = true
         }
 
-        // Assuming you want similar functionality for button19 (Step 3 initiation) as previous steps
-        // Adjust this logic based on your specific requirements for Step 3
         buttons[18].setOnClickListener {
-            // Special logic for button19
-            it.visibility = View.GONE
-            textViewExplanation[4].visibility = View.GONE // Assuming this is textViewExplanation4
-            textViewExplanation[0].visibility = View.VISIBLE
-            buttons[0].isEnabled = true
-            buttons[0].text = getString(R.string.right_fragment_step_1_button)
-            buttons[9].text = getString(R.string.right_fragment_step_2_button) // Assuming buttons[8] is button9
+            it.isEnabled = false
+            textViewExplanation[4].visibility = View.GONE
+            textViewExplanation[5].visibility = View.VISIBLE
+            containers[2].visibility = View.VISIBLE
+        }
+
+        buttons[26].setOnClickListener {
+            it.isEnabled = true
+            buttons[18].text = getString(R.string.right_fragment_complete_step_3_text) // Update Step 3 button text
+            containers[2].visibility = View.GONE
+            customContainer.visibility = View.GONE // Hide or clear the custom layout container
+            customContainer.removeAllViews() // Optionally remove all views from the custom container
+            textViewExplanation[5].visibility = View.GONE
+            buttons[18].isEnabled = true
+            /**it.isEnabled = false // Assuming this button should be disabled after completion
+            textViewExplanation[6].visibility = View.VISIBLE
+            buttons[27].visibility = View.VISIBLE
+            buttons[27].isEnabled = true // Enable Step 3 initiation
+            **/
         }
     }
 
@@ -267,11 +307,12 @@ class RightFragment : Fragment() {
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val datePickerDialog = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, dayOfMonth ->
-            // Format the selected date and set it as the button text
-            val selectedDate = "${selectedMonth + 1}/$dayOfMonth/$selectedYear"
-            button.text = selectedDate // Update the button text instead of EditText
-        }, year, month, day)
+        val datePickerDialog =
+            DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, dayOfMonth ->
+                // Format the selected date and set it as the button text
+                val selectedDate = "${selectedMonth + 1}/$dayOfMonth/$selectedYear"
+                button.text = selectedDate // Update the button text instead of EditText
+            }, year, month, day)
 
         datePickerDialog.show()
     }
@@ -319,7 +360,12 @@ class RightFragment : Fragment() {
 
             // Set up the OnItemSelectedListener for stateSpinner
             stateSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
                     // Move focus to zipEditText after a selection has been made
                     zipEditText.requestFocus()
                 }
