@@ -44,7 +44,7 @@ class RightFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Initialization and setup calls...
-        val customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
+        customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
         setupRadioButtons(view) // Setup radio buttons and track selections
 
         // Dynamically find button IDs and initialize buttons
@@ -224,6 +224,15 @@ class RightFragment : Fragment() {
         }
     }
 
+    private fun setActiveStepContainer(activeContainer: LinearLayout, containers: List<LinearLayout>) {
+        // Hide all containers first
+        containers.forEach { container ->
+            container.visibility = View.GONE
+        }
+        // Make only the active container visible
+        activeContainer.visibility = View.VISIBLE
+    }
+
     private fun setupSpecialButtons(
         buttons: List<Button>,
         textViewExplanation: List<TextView>,
@@ -235,6 +244,7 @@ class RightFragment : Fragment() {
             it.isEnabled = false
             textViewExplanation[0].visibility = View.GONE
             containers[0].visibility = View.VISIBLE
+            setActiveStepContainer(containers[0], containers)
         }
 
         buttons[8].setOnClickListener {
@@ -256,6 +266,7 @@ class RightFragment : Fragment() {
             textViewExplanation[2].visibility = View.GONE
             textViewExplanation[3].visibility = View.VISIBLE
             containers[1].visibility = View.VISIBLE
+            setActiveStepContainer(containers[1], containers)
         }
 
         buttons[17].setOnClickListener {
@@ -278,6 +289,7 @@ class RightFragment : Fragment() {
             textViewExplanation[4].visibility = View.GONE
             textViewExplanation[5].visibility = View.VISIBLE
             containers[2].visibility = View.VISIBLE
+            setActiveStepContainer(containers[2], containers)
         }
 
         buttons[26].setOnClickListener {
