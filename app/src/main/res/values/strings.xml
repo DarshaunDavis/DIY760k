@@ -149,6 +149,7 @@
     <string name="right_fragment_complete_step_3">Complete Step 3</string>
     <string name="right_fragment_complete_step_3_text">Step 3 Complete</string>
     <string name="right_fragment_step_4_button">Step 4 - Second Round of Letters</string>
+    <string name="remove_button">-</string>
 
     <string-array name="company_addresses">
         <item>Experian\nP.O. Box 4500\nAllen, TX 75013</item>

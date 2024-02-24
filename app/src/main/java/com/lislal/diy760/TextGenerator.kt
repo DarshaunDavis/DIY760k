@@ -138,6 +138,30 @@ class TextGenerator {
         }
     }
 
+    // Direct setup for the Name Dispute Spinner
+    fun setupNameDisputeSpinnerDirectly(spinner: Spinner, context: Context) {
+        ArrayAdapter.createFromResource(
+            context,
+            R.array.name_dispute_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+    }
+
+    // Direct setup for the Dispute Results Spinner
+    fun setupDisputeResultsSpinnerDirectly(spinner: Spinner, context: Context) {
+        ArrayAdapter.createFromResource(
+            context,
+            R.array.dispute_results_options,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+    }
+
     // Function to add real-time validation listeners
     private fun addValidationListeners(customView: View) {
         val editTextIds = listOf(
@@ -170,7 +194,9 @@ class TextGenerator {
     fun generateTextFromLayout(
         customView: View,
         context: Context,
-        radioSelections: Map<Int, String>
+        radioSelections: Map<Int, String>,
+        personalInfo: PersonalInfoEntry,
+        nameDisputeEntries: List<NameDisputeEntry>
     ): String? {
         // Validate input fields first
         if (!validateInputFields(customView, context)) {
@@ -232,8 +258,8 @@ class TextGenerator {
         }
 
         // Instantiate LetterGenerator and generate the letter content with names
-        val letterGenerator = LetterGenerator(context, radioSelections)
-        val letterContent = letterGenerator.generateRandomizedLetter(firstName, lastName, inaccurateName, disputeReason, disputeResult)
+        val letterGenerator = LetterGenerator(context, personalInfo, radioSelections, nameDisputeEntries)
+        val letterContent = letterGenerator.generateRandomizedLetter()
         stringBuilder.append(letterContent)
 
         return stringBuilder.toString()

@@ -3,6 +3,7 @@ package com.lislal.diy760
 import android.app.DatePickerDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,20 +19,15 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TableLayout
+import android.widget.TableRow
 import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import java.util.Calendar
 
 class RightFragment : Fragment() {
     private lateinit var customContainer: FrameLayout // Declare as class property
     private val radioSelections = mutableMapOf<Int, String>()
-
-    data class ButtonAction(
-        val layoutResId: Int,
-        val nextButtonIndex: Int? // Use null for no subsequent button
-    )
+    private lateinit var textGenerator: TextGenerator
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -46,6 +42,7 @@ class RightFragment : Fragment() {
         // Initialization and setup calls...
         customContainer = view.findViewById<FrameLayout>(R.id.customContainer)
         setupRadioButtons(view) // Setup radio buttons and track selections
+        textGenerator = TextGenerator()
 
         // Dynamically find button IDs and initialize buttons
         val buttons = (1..28).map { id ->
@@ -58,6 +55,12 @@ class RightFragment : Fragment() {
             )
         }
 
+        val containers = listOf(
+            view.findViewById<LinearLayout>(R.id.buttonAndTextContainer),
+            view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer),
+            view.findViewById<LinearLayout>(R.id.thirdButtonAndTextContainer)
+        )
+
         val textViewExplanation = listOf(
             view.findViewById<TextView>(R.id.textViewExplanation1),
             view.findViewById<TextView>(R.id.textViewExplanation2),
@@ -65,11 +68,6 @@ class RightFragment : Fragment() {
             view.findViewById<TextView>(R.id.textViewExplanation4),
             view.findViewById<TextView>(R.id.textViewExplanation5),
             view.findViewById<TextView>(R.id.textViewExplanation6)
-        )
-        val containers = listOf(
-            view.findViewById<LinearLayout>(R.id.buttonAndTextContainer),
-            view.findViewById<LinearLayout>(R.id.secondButtonAndTextContainer),
-            view.findViewById<LinearLayout>(R.id.thirdButtonAndTextContainer)
         )
 
         val buttonActions = defineButtonActions()
@@ -146,21 +144,16 @@ class RightFragment : Fragment() {
                 val generateButton = customView.findViewById<Button>(R.id.generateButton)
                 val letterTextView = customView.findViewById<TextView>(R.id.generatedContent)
                 generateButton?.setOnClickListener {
-                    if (areAllRadioGroupsValidated(customView)) {
-                        val displayText = textGenerator.generateTextFromLayout(
-                            customView,
-                            requireContext(),
-                            radioSelections
-                        )
-                        letterTextView?.visibility = View.VISIBLE
-                        letterTextView?.text = displayText
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Please make a selection for all questions.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
+                    val personalInfo = collectPersonalInfo()
+                    val nameDisputeEntries = collectNameDisputeEntries()
+                    //val letterGenerator = LetterGenerator(requireContext(), personalInfo, radioSelections, nameDisputeEntries)
+                    val letterText = textGenerator.generateTextFromLayout(
+                        customView,
+                        requireContext(),
+                        radioSelections,
+                        personalInfo,
+                        nameDisputeEntries)
+                    letterTextView?.text = letterText
                 }
             }
         }
@@ -170,10 +163,18 @@ class RightFragment : Fragment() {
         // Example of setting default values or performing additional setup
         // This should be customized based on what each custom layout needs
         // For example, setting up additional listeners, default data, etc.
+        val textGenerator = TextGenerator() // Assuming TextGenerator is properly implemented
 
         // Example: If your custom layout has specific fields that need default values
 
         // More initialization logic as needed for each custom layout
+
+        // Find the 'Add' button and set its click listener
+        val addButton = customView.findViewById<Button>(R.id.name_add_button)
+        addButton?.setOnClickListener {
+            // Call the function to add a new row to the table
+            addDuplicateSectionWithRemoveButton(customView, textGenerator)
+        }
     }
 
     private fun setupDatePickerButton(customView: View) {
@@ -400,4 +401,97 @@ class RightFragment : Fragment() {
             }
         }
     }
+
+    private fun addDuplicateSectionWithRemoveButton(customView: View, textGenerator: TextGenerator) {
+        val tableLayout = customView.findViewById<TableLayout>(R.id.name_form_table)
+
+        // Create a copy of the EditText row
+        val editTextRow = TableRow(requireContext()).apply {
+            layoutParams = TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT)
+        }
+        val editText = EditText(requireContext()).apply {
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            hint = getString(R.string.inaccurate_name)
+            inputType = InputType.TYPE_TEXT_FLAG_CAP_WORDS
+        }
+        editTextRow.addView(editText)
+
+        // Create a copy of the first Spinner row
+        val spinnerRow1 = TableRow(requireContext())
+        val spinner1 = Spinner(requireContext()).apply {
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 4f)
+        }
+        textGenerator.setupNameDisputeSpinnerDirectly(spinner1, requireContext())
+        spinnerRow1.addView(spinner1)
+
+        // Create a copy of the second Spinner row, but with a Remove button instead of the Add button
+        val spinnerRow2 = TableRow(requireContext())
+        val spinner2 = Spinner(requireContext()).apply {
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 4f)
+        }
+        textGenerator.setupDisputeResultsSpinnerDirectly(spinner2, requireContext())
+        spinnerRow2.addView(spinner2)
+
+        val removeButton = Button(requireContext()).apply {
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f)
+            text = getString(R.string.remove_button)
+            setOnClickListener {
+                // Remove this section from the TableLayout
+                tableLayout.removeView(editTextRow)
+                tableLayout.removeView(spinnerRow1)
+                tableLayout.removeView(spinnerRow2)
+            }
+        }
+        spinnerRow2.addView(removeButton)
+
+        // Add the new rows to the TableLayout
+        tableLayout.addView(editTextRow)
+        tableLayout.addView(spinnerRow1)
+        tableLayout.addView(spinnerRow2)
+    }
+
+    private fun collectPersonalInfo(): PersonalInfoEntry {
+        val firstName = view?.findViewById<EditText>(R.id.firstNameEditText)?.text.toString()
+        val lastName = view?.findViewById<EditText>(R.id.lastNameEditText)?.text.toString()
+        val address = view?.findViewById<EditText>(R.id.addressEditText)?.text.toString()
+        val apartment = view?.findViewById<EditText>(R.id.apartmentEditText)?.text.toString()
+        val city = view?.findViewById<EditText>(R.id.cityEditText)?.text.toString()
+        val state = view?.findViewById<Spinner>(R.id.stateSpinner)?.selectedItem.toString()
+        val zipCode = view?.findViewById<EditText>(R.id.zipEditText)?.text.toString()
+        val social = view?.findViewById<EditText>(R.id.socialEditText)?.text.toString()
+        val birthDate = view?.findViewById<Button>(R.id.birthDatePickerButton)?.text.toString()
+
+        return PersonalInfoEntry(firstName, lastName, address, apartment, city, state, zipCode, social, birthDate)
+    }
+
+    private fun collectNameDisputeEntries(): List<NameDisputeEntry> {
+        val entries = mutableListOf<NameDisputeEntry>()
+        val tableLayout = view?.findViewById<TableLayout>(R.id.name_form_table)
+        tableLayout?.let {
+            // Assuming each section consists of 3 rows: EditText, Spinner, Spinner + Button
+            val sectionCount = it.childCount / 3
+            for (i in 0 until sectionCount) {
+                val editTextRow = it.getChildAt(i * 3) as TableRow
+                val inaccurateNameEditText = editTextRow.getChildAt(0) as EditText
+
+                val spinnerRow1 = it.getChildAt(i * 3 + 1) as TableRow
+                val disputeReasonSpinner = spinnerRow1.getChildAt(0) as Spinner
+
+                val spinnerRow2 = it.getChildAt(i * 3 + 2) as TableRow
+                val disputeResultSpinner = spinnerRow2.getChildAt(0) as Spinner
+
+                val inaccurateName = inaccurateNameEditText.text.toString()
+                val disputeReason = disputeReasonSpinner.selectedItem.toString()
+                val disputeResult = disputeResultSpinner.selectedItem.toString()
+
+                entries.add(NameDisputeEntry(inaccurateName, disputeReason, disputeResult))
+            }
+        }
+        return entries
+    }
+
+    data class ButtonAction(
+        val layoutResId: Int,
+        val nextButtonIndex: Int? // Use null for no subsequent button
+    )
 }

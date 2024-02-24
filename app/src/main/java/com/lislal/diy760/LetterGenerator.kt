@@ -3,23 +3,34 @@ package com.lislal.diy760
 import android.content.Context
 import kotlin.random.Random
 
-class LetterGenerator(private val context: Context, private val radioSelections: Map<Int, String>) {
+class LetterGenerator(
+    private val context: Context,
+    private val personalInfo: PersonalInfoEntry,
+    private val radioSelections: Map<Int, String>,
+    private val nameDisputeEntries: List<NameDisputeEntry>
+) {
 
     private fun getRandomSectionVersion(sectionResourceId: Int): String {
         val versions = context.resources.getStringArray(sectionResourceId)
         return versions[Random.nextInt(versions.size)]
     }
 
-    fun generateRandomizedLetter(firstName: String = "", lastName: String = "", inaccurateName: String = "", disputeReason: String = "", disputeResult: String = ""): String {
+    fun generateRandomizedLetter(): String {
         val stringBuilder = StringBuilder()
 
-        // Always include section1 first
-        val section1Id = R.array.section1_versions
-        val section1Version = getRandomSectionVersion(section1Id)
-        stringBuilder.append("$section1Version\n\n")
+        // Append user details first
+        stringBuilder.apply {
+            append("Name: ${personalInfo.firstName} ${personalInfo.lastName}\n")
+            append("Address: ${personalInfo.address}, ${personalInfo.city}, ${personalInfo.state} ${personalInfo.zipCode}\n")
+            append("SSN: ${personalInfo.social}\n")
+            append("Birth Date: ${personalInfo.birthDate}\n\n")
+        }
 
-        // Conditional sections with customized handling for section2
-        val conditionalSectionMap = mapOf(
+        // Always include section1 first
+        stringBuilder.append("${getRandomSectionVersion(R.array.section1_versions)}\n\n")
+
+        // Conditional sections with customized handling
+        val conditionalSectionMap = linkedMapOf<Int, Pair<String, Int>>(
             R.id.radioGroup1 to Pair("Yes", R.array.section2_versions),
             R.id.radioGroup2 to Pair("Yes", R.array.section3_versions),
             R.id.radioGroup3 to Pair("Yes", R.array.section4_versions),
@@ -29,34 +40,30 @@ class LetterGenerator(private val context: Context, private val radioSelections:
             R.id.radioGroup7 to Pair("Yes", R.array.section8_versions),
             R.id.radioGroup8 to Pair("Yes", R.array.section11_versions),
             R.id.radioGroup9 to Pair("Yes", R.array.section9_versions)
-            // Add more conditional mappings as needed
         )
 
+        // Process conditional sections
         conditionalSectionMap.forEach { (radioGroupId, pair) ->
             val selection = radioSelections[radioGroupId]
             if (selection == pair.first) {
-                if (radioGroupId == R.id.radioGroup1 && inaccurateName.isNotEmpty() && disputeReason.isNotEmpty()) {
-                    // Append customized section2 version
-                    stringBuilder.append("Inaccurate Name: $inaccurateName\n" +
-                            "Dispute Reason: $disputeReason\n" +
-                            "Desired Result: $disputeResult\n\n")
-                } else {
-                    // Append regular version for other sections
-                    val randomVersion = getRandomSectionVersion(pair.second)
-                    stringBuilder.append("$randomVersion\n\n")
+                stringBuilder.append("${getRandomSectionVersion(pair.second)}\n\n")
+                // If this is the section after which name disputes should be added
+                if (radioGroupId == R.id.radioGroup1) {
+                    // Append name dispute sections
+                    nameDisputeEntries.forEach { entry ->
+                        stringBuilder.append("Inaccurate Name: ${entry.inaccurateName}\n")
+                        stringBuilder.append("Dispute Reason: ${entry.disputeReason}\n")
+                        stringBuilder.append("Desired Result: ${entry.disputeResult}\n\n")
+                    }
                 }
             }
         }
 
         // Always include section10 last
-        val section10Id = R.array.section10_versions
-        val section10Version = getRandomSectionVersion(section10Id)
-        val personalizedClosing = if (firstName.isNotEmpty() || lastName.isNotEmpty()) {
-            "$section10Version\n\n$firstName $lastName"
-        } else {
-            section10Version
-        }
-        stringBuilder.append("$personalizedClosing\n\n")
+        stringBuilder.append("${getRandomSectionVersion(R.array.section10_versions)}\n\n")
+
+        // Add a personalized closing if names are provided
+        stringBuilder.append("Sincerely,\n${personalInfo.firstName} ${personalInfo.lastName}")
 
         return stringBuilder.toString()
     }
